@@ -1,6 +1,8 @@
 # brio - Basic R Input Output
 
 <!-- badges: start -->
+[![Codecov test coverage](https://codecov.io/gh/r-lib/brio/branch/master/graph/badge.svg)](https://codecov.io/gh/r-lib/brio?branch=master)
+[![R build status](https://github.com/r-lib/brio/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/brio/actions)
 <!-- badges: end -->
 
 Functions to handle basic input output, these functions always
