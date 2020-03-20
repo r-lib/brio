@@ -1,5 +1,9 @@
 #include <stdio.h>
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 // This is needed to support wide character paths on windows
 FILE* open_with_widechar_on_windows(const char* txt, const char* mode) {
   FILE* out;
