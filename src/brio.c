@@ -20,7 +20,11 @@ FILE* open_with_widechar_on_windows(const char* txt, const char* mode) {
   }
 
   MultiByteToWideChar(CP_UTF8, 0, txt, -1, buf, len);
-  out = _wfopen(buf, mode);
+  if (strncmp(mode, "rb", 2) == 0) {
+    out = _wfopen(buf, L"rb");
+  } else if (strncmp(mode, "wb", 2) == 0) {
+    out = _wfopen(buf, L"wb");
+  }
 #else
   out = fopen(txt, mode);
 #endif
