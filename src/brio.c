@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #ifdef _WIN32
+#include <Rinternals.h>
 #include <windows.h>
 #endif
 
