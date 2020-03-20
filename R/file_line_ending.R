@@ -2,8 +2,8 @@
 #'
 #' @inheritParams read_lines
 #' @return The line endings used, one of
-#'   - '\n' - if the file uses Unix line endings
-#'   - '\r\n' - if the file uses Windows line endings
+#'   - '\\n' - if the file uses Unix line endings
+#'   - '\\r\\n' - if the file uses Windows line endings
 #'   - NA - if it cannot be determined
 #' @export
 file_line_ending <- function(path) {

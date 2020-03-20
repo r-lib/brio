@@ -12,8 +12,8 @@ file_line_ending(path)
 \value{
 The line endings used, one of
 \itemize{
-\item '\n' - if the file uses Unix line endings
-\item '\r\n' - if the file uses Windows line endings
+\item '\\n' - if the file uses Unix line endings
+\item '\\r\\n' - if the file uses Windows line endings
 \item NA - if it cannot be determined
 }
 }
