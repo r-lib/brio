@@ -3,3 +3,6 @@
 ^LICENSE\.md$
 ^script.R$
 ^src/.clang-format$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
