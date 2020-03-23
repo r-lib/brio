@@ -33,7 +33,7 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
   line_buf = (char*)malloc(line_size);
 
   size_t read_size = 0;
-  while ((read_size = fread(read_buf, 1, READ_BUF_SIZE, fp)) > 0) {
+  while ((read_size = fread(read_buf, 1, READ_BUF_SIZE - 1, fp)) > 0) {
     read_buf[read_size] = '\0';
     // Find the newlines
     const char* prev_result = read_buf;

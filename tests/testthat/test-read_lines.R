@@ -131,7 +131,7 @@ test_that("read_lines works with really long lines", {
   tmp <- tempfile()
   on.exit(unlink(tmp))
 
-  data <- rep(paste(rep("a", 1024 * 1024 - 1), collapse = ""), 5)
+  data <- rep(paste(rep("a", 1024 * 1024 - 2), collapse = ""), 5)
 
   con <- file(tmp, "wb")
   writeLines(data, con, sep = "\r\n")
