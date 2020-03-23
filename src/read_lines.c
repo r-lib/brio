@@ -89,6 +89,7 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
 
     memcpy(line_buf + line_pos, prev_result, len);
     line_pos += len;
+    line_buf[line_pos] = '\0';
   }
 
   if (line_pos > 0) {
