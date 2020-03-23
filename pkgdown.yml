@@ -1,6 +1,15 @@
-pandoc: 2.7.3
+pandoc: 2.9.2
 pkgdown: 1.4.1.9000
-pkgdown_sha: 846840e436e9f47157fed894ba17b9c456cd99ce
+pkgdown_sha: f58a2bf5afee11aeddc7f27437cbe833a2f4686d
 articles: []
-last_built: 2020-03-23T14:09Z
+last_built:
+  sec: 0.0
+  min: 35
+  hour: 14
+  mday: 23
+  mon: 2
+  year: 120
+  wday: 1
+  yday: 82
+  isdst: 0
 
