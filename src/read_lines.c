@@ -55,7 +55,7 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
         }
       }
 
-      if (line_pos + len >= line_size) {
+      while (line_pos + len >= line_size) {
         // The line_buf needs to get bigger
         line_size *= 2;
         line_buf = realloc(line_buf, line_size);
@@ -81,7 +81,7 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
     }
 
     size_t len = read_size - (prev_result - read_buf);
-    if (line_pos + len >= line_size) {
+    while (line_pos + len >= line_size) {
       // The line_buf needs to get bigger
       line_size *= 2;
       line_buf = realloc(line_buf, line_size);

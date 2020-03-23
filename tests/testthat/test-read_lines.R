@@ -93,3 +93,65 @@ test_that("read_lines works with Windows line endings and no trailing newline", 
   expect_equal(read_lines(tmp, 0), character())
   expect_equal(read_lines(tmp, 1), c("foo"))
 })
+
+test_that("read_lines works with long lines", {
+
+  tmp <- tempfile()
+  on.exit(unlink(tmp))
+
+  data <- c(
+    paste(rep("a", 1024), collapse = ""),
+    paste(rep("b", 2048), collapse = "")
+  )
+
+  writeLines(data, tmp)
+
+  expect_equal(read_lines(tmp), data)
+  expect_equal(read_lines(tmp, 0), character())
+  expect_equal(read_lines(tmp, 1), data[[1]])
+})
+
+test_that("read_lines works with lots of lines", {
+
+  tmp <- tempfile()
+  on.exit(unlink(tmp))
+
+  data <- rep("a", 1025)
+
+  writeLines(data, tmp)
+
+  expect_equal(read_lines(tmp), data)
+  expect_equal(read_lines(tmp, 0), character())
+  expect_equal(read_lines(tmp, 1), data[[1]])
+})
+
+
+test_that("read_lines works with really long lines", {
+
+  tmp <- tempfile()
+  on.exit(unlink(tmp))
+
+  data <- rep(paste(rep("a", 1024 * 1024 - 1), collapse = ""), 5)
+
+  con <- file(tmp, "wb")
+  writeLines(data, con, sep = "\r\n")
+  close(con)
+
+  expect_equal(read_lines(tmp), data)
+  expect_equal(read_lines(tmp, 0), character())
+  expect_equal(read_lines(tmp, 1), data[[1]])
+})
+
+test_that("read_lines works with lots of lines that don't end with a newline", {
+
+  tmp <- tempfile()
+  on.exit(unlink(tmp))
+
+  data <- rep("a", 1025)
+
+  writeBin(paste(data, collapse = "\n"), tmp)
+
+  expect_equal(read_lines(tmp), data)
+  expect_equal(read_lines(tmp, 0), character())
+  expect_equal(read_lines(tmp, 1), "a")
+})
