@@ -18,6 +18,10 @@ SEXP brio_read_file(SEXP path) {
   size_t file_size = ftell(fp); // get current file pointer
   rewind(fp);
 
+  if (file_size == 0) {
+    return allocVector(STRSXP, 0);
+  }
+
   char* read_buf;
 
   read_buf = (char*)malloc(file_size + 1);
