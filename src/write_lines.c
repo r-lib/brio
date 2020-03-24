@@ -23,7 +23,20 @@ SEXP brio_write_lines(SEXP text, SEXP path, SEXP eol) {
   for (R_xlen_t i = 0; i < len; ++i) {
     SEXP elt = STRING_ELT(text, i);
     R_xlen_t elt_size = xlength(elt);
-    fwrite(CHAR(elt), 1, elt_size, fp);
+
+    const char* cur = CHAR(elt);
+    const char* prev = cur;
+    while ((cur = strchr(prev, '\n')) != NULL) {
+      size_t len = cur - prev;
+      if (len > 1 && (cur - 1)[0] == '\r') {
+        --len;
+      }
+      fwrite(prev, 1, len, fp);
+      fwrite(eol_c, 1, eol_len, fp);
+      prev = cur + 1;
+    }
+    size_t len = elt_size - (prev - CHAR(elt));
+    fwrite(prev, 1, len, fp);
     fwrite(eol_c, 1, eol_len, fp);
   }
 
