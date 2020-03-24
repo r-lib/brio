@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read text lines from a file — read_lines • brio</title>
+<title>Read an entire file — read_file • brio</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="Read text lines from a file — read_lines" />
-<meta property="og:description" content="The file is assumed to be UTF-8 and the resulting text has its encoding set
-as such." />
+<meta property="og:title" content="Read an entire file — read_file" />
+<meta property="og:description" content="read_file() reads an entire file into a single character vector.
+read_file_raw() reads an entire file into a raw vector." />
 
 
 
@@ -104,17 +104,19 @@ as such." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read text lines from a file</h1>
+    <h1>Read an entire file</h1>
     
-    <div class="hidden name"><code>read_lines.Rd</code></div>
+    <div class="hidden name"><code>read_file.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The file is assumed to be UTF-8 and the resulting text has its encoding set
-as such.</p>
+    <p><code>read_file()</code> reads an entire file into a single character vector.
+<code>read_file_raw()</code> reads an entire file into a raw vector.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_lines</span>(<span class='no'>path</span>, <span class='kw'>n</span> <span class='kw'>=</span> -<span class='fl'>1</span>)</pre>
+    <pre class="usage"><span class='fu'>read_file</span>(<span class='no'>path</span>)
+
+<span class='fu'>read_file_raw</span>(<span class='no'>path</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -123,20 +125,25 @@ as such.</p>
       <th>path</th>
       <td><p>A character string giving the file path.</p></td>
     </tr>
-    <tr>
-      <th>n</th>
-      <td><p>integer. The number of lines to read. A negative number means read
-all the lines in the file.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A UTF-8 encoded character vector of the lines in the file.</p>
+    
+<ul>
+<li><p><code>read_file()</code>: A length 1 character vector.</p></li>
+<li><p><code>read_file_raw()</code>: A raw vector.</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>read_file()</code> assumes the file has a UTF-8 encoding.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>authors_file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Rhome.html'>R.home</a></span>(<span class='st'>"doc"</span>), <span class='st'>"AUTHORS"</span>)
-<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'>read_lines</span>(<span class='no'>authors_file</span>)</div></pre>
+<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'>read_file</span>(<span class='no'>authors_file</span>)
+<span class='no'>data_raw</span> <span class='kw'>&lt;-</span> <span class='fu'>read_file_raw</span>(<span class='no'>authors_file</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span>(<span class='no'>data</span>, <span class='fu'><a href='https://rdrr.io/r/base/rawConversion.html'>rawToChar</a></span>(<span class='no'>data_raw</span>))</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

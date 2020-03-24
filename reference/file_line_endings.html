@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read text lines from a file — read_lines • brio</title>
+<title>Retrieve the type of line endings used by a file — file_line_endings • brio</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="Read text lines from a file — read_lines" />
-<meta property="og:description" content="The file is assumed to be UTF-8 and the resulting text has its encoding set
-as such." />
+<meta property="og:title" content="Retrieve the type of line endings used by a file — file_line_endings" />
+<meta property="og:description" content="Retrieve the type of line endings used by a file" />
 
 
 
@@ -104,17 +103,16 @@ as such." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read text lines from a file</h1>
+    <h1>Retrieve the type of line endings used by a file</h1>
     
-    <div class="hidden name"><code>read_lines.Rd</code></div>
+    <div class="hidden name"><code>file_line_endings.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The file is assumed to be UTF-8 and the resulting text has its encoding set
-as such.</p>
+    <p>Retrieve the type of line endings used by a file</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_lines</span>(<span class='no'>path</span>, <span class='kw'>n</span> <span class='kw'>=</span> -<span class='fl'>1</span>)</pre>
+    <pre class="usage"><span class='fu'>file_line_endings</span>(<span class='no'>path</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -123,20 +121,25 @@ as such.</p>
       <th>path</th>
       <td><p>A character string giving the file path.</p></td>
     </tr>
-    <tr>
-      <th>n</th>
-      <td><p>integer. The number of lines to read. A negative number means read
-all the lines in the file.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A UTF-8 encoded character vector of the lines in the file.</p>
+    <p>The line endings used, one of</p><ul>
+<li><p>'\n' - if the file uses Unix line endings</p></li>
+<li><p>'\r\n' - if the file uses Windows line endings</p></li>
+<li><p>NA - if it cannot be determined</p></li>
+</ul>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>authors_file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Rhome.html'>R.home</a></span>(<span class='st'>"doc"</span>), <span class='st'>"AUTHORS"</span>)
-<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'>read_lines</span>(<span class='no'>authors_file</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>tf1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
+<span class='no'>tf2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
+<span class='fu'><a href='write_lines.html'>write_lines</a></span>(<span class='st'>"foo"</span>, <span class='no'>tf1</span>, <span class='kw'>eol</span> <span class='kw'>=</span> <span class='st'>"\n"</span>)
+<span class='fu'><a href='write_lines.html'>write_lines</a></span>(<span class='st'>"bar"</span>, <span class='no'>tf2</span>, <span class='kw'>eol</span> <span class='kw'>=</span> <span class='st'>"\r\n"</span>)
+
+<span class='fu'>file_line_endings</span>(<span class='no'>tf1</span>)</div><div class='output co'>#&gt; [1] "\n"</div><div class='input'><span class='fu'>file_line_endings</span>(<span class='no'>tf2</span>)</div><div class='output co'>#&gt; [1] "\r\n"</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>tf1</span>, <span class='no'>tf2</span>))</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
