@@ -106,31 +106,14 @@
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">42</span>)
 
 <span class="co"># generate 1000 random lines between 100-1000 characters long</span>
-<span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu">gen_random</span>(<span class="no">letters</span>, <span class="fl">1000</span>, <span class="kw">min</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="kw">max</span> <span class="kw">=</span> <span class="fl">1000</span>)</pre></div>
-</div>
-<div id="writing" class="section level2">
-<h2 class="hasAnchor">
-<a href="#writing" class="anchor"></a>Writing</h2>
-<p>Write speeds are basically the same regardless of method, though brio does avoid some extra memory allocations.</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="kw pkg">bench</span><span class="kw ns">::</span><span class="fu">mark</span>(
-  <span class="kw pkg">brio</span><span class="kw ns">::</span><span class="fu"><a href="reference/write_lines.html">write_lines</a></span>(<span class="no">data</span>, <span class="st">"benchmark"</span>),
-  <span class="kw pkg">readr</span><span class="kw ns">::</span><span class="fu">write_lines</span>(<span class="no">data</span>, <span class="st">"benchmark"</span>),
-  <span class="kw pkg">base</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span>(<span class="no">data</span>, <span class="st">"benchmark"</span>),
-  <span class="kw">check</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)
-<span class="co">#&gt; # A tibble: 3 x 6</span>
-<span class="co">#&gt;   expression                                 min median `itr/sec` mem_alloc</span>
-<span class="co">#&gt;   &lt;bch:expr&gt;                            &lt;bch:tm&gt; &lt;bch:&gt;     &lt;dbl&gt; &lt;bch:byt&gt;</span>
-<span class="co">#&gt; 1 brio::write_lines(data, "benchmark")    1.57ms 1.94ms      516.        0B</span>
-<span class="co">#&gt; 2 readr::write_lines(data, "benchmark")   1.08ms 1.84ms      541.    2.49KB</span>
-<span class="co">#&gt; 3 base::writeLines(data, "benchmark")   946.54µs 1.34ms      745.        0B</span>
-<span class="co">#&gt; # … with 1 more variable: `gc/sec` &lt;dbl&gt;</span></pre></div>
-</div>
-<div id="reading" class="section level2">
-<h2 class="hasAnchor">
-<a href="#reading" class="anchor"></a>Reading</h2>
+<span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu">gen_random</span>(<span class="no">letters</span>, <span class="fl">1000</span>, <span class="kw">min</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="kw">max</span> <span class="kw">=</span> <span class="fl">1000</span>)
+
+<span class="kw pkg">brio</span><span class="kw ns">::</span><span class="fu"><a href="reference/write_lines.html">write_lines</a></span>(<span class="no">data</span>, <span class="st">"benchmark"</span>)</pre></div>
+<div id="reading" class="section level3">
+<h3 class="hasAnchor">
+<a href="#reading" class="anchor"></a>Reading</h3>
 <p>Reading speeds are a decent amount faster with brio, mainly due to larger block sizes and avoidance of extra copies.</p>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="kw pkg">bench</span><span class="kw ns">::</span><span class="fu">mark</span>(
+<div class="sourceCode" id="cb3"><pre class="r"><span class="kw pkg">bench</span><span class="kw ns">::</span><span class="fu">mark</span>(
   <span class="kw pkg">brio</span><span class="kw ns">::</span><span class="fu"><a href="reference/read_lines.html">read_lines</a></span>(<span class="st">"benchmark"</span>),
   <span class="kw pkg">readr</span><span class="kw ns">::</span><span class="fu">read_lines</span>(<span class="st">"benchmark"</span>),
   <span class="kw pkg">base</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span>(<span class="st">"benchmark"</span>)
@@ -138,12 +121,31 @@
 <span class="co">#&gt; # A tibble: 3 x 6</span>
 <span class="co">#&gt;   expression                          min   median `itr/sec` mem_alloc</span>
 <span class="co">#&gt;   &lt;bch:expr&gt;                     &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;</span>
-<span class="co">#&gt; 1 brio::read_lines("benchmark")  686.53µs 719.68µs     1327.    8.05KB</span>
-<span class="co">#&gt; 2 readr::read_lines("benchmark")   1.53ms    1.6ms      606.   10.35KB</span>
-<span class="co">#&gt; 3 base::readLines("benchmark")     3.62ms   3.86ms      253.   31.39KB</span>
+<span class="co">#&gt; 1 brio::read_lines("benchmark")  694.92µs 723.33µs     1306.    8.05KB</span>
+<span class="co">#&gt; 2 readr::read_lines("benchmark")   1.52ms    1.6ms      607.   10.35KB</span>
+<span class="co">#&gt; 3 base::readLines("benchmark")     3.67ms   3.88ms      247.   31.39KB</span>
+<span class="co">#&gt; # … with 1 more variable: `gc/sec` &lt;dbl&gt;</span></pre></div>
+</div>
+<div id="writing" class="section level3">
+<h3 class="hasAnchor">
+<a href="#writing" class="anchor"></a>Writing</h3>
+<p>Write speeds are basically the same regardless of method, though brio does avoid some extra memory allocations.</p>
+<div class="sourceCode" id="cb4"><pre class="r"><span class="kw pkg">bench</span><span class="kw ns">::</span><span class="fu">mark</span>(
+  <span class="kw pkg">brio</span><span class="kw ns">::</span><span class="fu"><a href="reference/write_lines.html">write_lines</a></span>(<span class="no">data</span>, <span class="st">"benchmark"</span>),
+  <span class="kw pkg">readr</span><span class="kw ns">::</span><span class="fu">write_lines</span>(<span class="no">data</span>, <span class="st">"benchmark"</span>),
+  <span class="kw pkg">base</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span>(<span class="no">data</span>, <span class="st">"benchmark"</span>),
+  <span class="kw">check</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+)
+<span class="co">#&gt; # A tibble: 3 x 6</span>
+<span class="co">#&gt;   expression                              min median `itr/sec` mem_alloc</span>
+<span class="co">#&gt;   &lt;bch:expr&gt;                            &lt;bch&gt; &lt;bch:&gt;     &lt;dbl&gt; &lt;bch:byt&gt;</span>
+<span class="co">#&gt; 1 brio::write_lines(data, "benchmark")  912µs 1.09ms      896.        0B</span>
+<span class="co">#&gt; 2 readr::write_lines(data, "benchmark") 941µs 1.16ms      833.    2.49KB</span>
+<span class="co">#&gt; 3 base::writeLines(data, "benchmark")   925µs 1.18ms      820.        0B</span>
 <span class="co">#&gt; # … with 1 more variable: `gc/sec` &lt;dbl&gt;</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span>(<span class="st">"benchmark"</span>)</pre></div>
+</div>
 </div>
 </div>
   </div>
