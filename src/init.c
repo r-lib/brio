@@ -7,11 +7,15 @@
 extern SEXP brio_read_lines(SEXP, SEXP);
 extern SEXP brio_write_lines(SEXP, SEXP, SEXP);
 extern SEXP brio_file_line_ending(SEXP);
+extern SEXP brio_read_file(SEXP);
+extern SEXP brio_read_file_raw(SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
     {"brio_read_lines", (DL_FUNC)&brio_read_lines, 2},
     {"brio_write_lines", (DL_FUNC)&brio_write_lines, 3},
     {"brio_file_line_ending", (DL_FUNC)&brio_file_line_ending, 1},
+    {"brio_read_file", (DL_FUNC)&brio_read_file, 1},
+    {"brio_read_file_raw", (DL_FUNC)&brio_read_file_raw, 1},
 
     {NULL, NULL, 0}};
 
