@@ -20,3 +20,14 @@ The line endings used, one of
 \description{
 Retrieve the type of line endings used by a file
 }
+\examples{
+tf1 <- tempfile()
+tf2 <- tempfile()
+write_lines("foo", tf1, eol = "\n")
+write_lines("bar", tf2, eol = "\r\n")
+
+file_line_endings(tf1)
+file_line_endings(tf2)
+
+unlink(c(tf1, tf2))
+}
