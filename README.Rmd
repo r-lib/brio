@@ -55,9 +55,23 @@ set.seed(42)
 
 # generate 1000 random lines between 100-1000 characters long
 data <- gen_random(letters, 1000, min = 100, max = 1000)
+
+brio::write_lines(data, "benchmark")
 ```
 
-## Writing
+### Reading
+
+Reading speeds are a decent amount faster with brio, mainly due to larger block sizes and avoidance of extra copies.
+
+```{r}
+bench::mark(
+  brio::read_lines("benchmark"),
+  readr::read_lines("benchmark"),
+  base::readLines("benchmark")
+)
+```
+
+### Writing
 
 Write speeds are basically the same regardless of method, though brio does avoid some extra memory allocations.
 
@@ -67,18 +81,6 @@ bench::mark(
   readr::write_lines(data, "benchmark"),
   base::writeLines(data, "benchmark"),
   check = FALSE
-)
-```
-
-## Reading
-
-Reading speeds are a decent amount faster with brio, mainly due to larger block sizes and avoidance of extra copies.
-
-```{r}
-bench::mark(
-  brio::read_lines("benchmark"),
-  readr::read_lines("benchmark"),
-  base::readLines("benchmark")
 )
 
 unlink("benchmark")
