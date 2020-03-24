@@ -10,7 +10,8 @@ Authors@R:
       person(given = "RStudio",
              role = c("cph", "fnd")))
 Description: Functions to handle basic input output, these functions always
-  read and write UTF-8 files and provide more explicit control over line endings.
+  read and write UTF-8 (8-bit Unicode Transformation Format) files and provide
+  more explicit control over line endings.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
