@@ -6,6 +6,12 @@
 #' @param eol The end of line character to use between lines.
 #' @return The UTF-8 encoded input text (invisibly).
 #' @export
+#' @examples
+#' tf <- tempfile()
+#'
+#' write_lines(rownames(mtcars), tf)
+#'
+#' unlink(tf)
 write_lines <- function(text, path, eol = "\n") {
   text <- as.character(text)
   text <- enc2utf8(text)

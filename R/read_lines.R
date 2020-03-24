@@ -7,6 +7,9 @@
 #'  all the lines in the file.
 #' @return A UTF-8 encoded character vector of the lines in the file.
 #' @export
+#' @examples
+#' authors_file <- file.path(R.home("doc"), "AUTHORS")
+#' data <- read_lines(authors_file)
 read_lines <- function(path, n = -1) {
   path <- normalizePath(path, mustWork = TRUE)
   n <- as.integer(n)

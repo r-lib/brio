@@ -19,3 +19,10 @@ The UTF-8 encoded input text (invisibly).
 \description{
 The text is converted to UTF-8 encoding before writing.
 }
+\examples{
+tf <- tempfile()
+
+write_lines(rownames(mtcars), tf)
+
+unlink(tf)
+}

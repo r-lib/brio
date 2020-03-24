@@ -25,3 +25,9 @@ read_file_raw(path)
 \details{
 \code{read_file()} assumes the file has a UTF-8 encoding.
 }
+\examples{
+authors_file <- file.path(R.home("doc"), "AUTHORS")
+data <- read_file(authors_file)
+data_raw <- read_file_raw(authors_file)
+identical(data, rawToChar(data_raw))
+}
