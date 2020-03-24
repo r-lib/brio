@@ -32,9 +32,9 @@ write_lines(c("abc", "123"), "my-file")
 # Write with windows newlines
 write_lines(c("abc", "123"), "my-file-2", eol = "\r\n")
 
-file_line_ending("my-file")
+file_line_endings("my-file")
 
-file_line_ending("my-file-2")
+file_line_endings("my-file-2")
 
 read_lines("my-file")
 

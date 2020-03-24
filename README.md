@@ -23,10 +23,10 @@ write_lines(c("abc", "123"), "my-file")
 # Write with windows newlines
 write_lines(c("abc", "123"), "my-file-2", eol = "\r\n")
 
-file_line_ending("my-file")
+file_line_endings("my-file")
 #> [1] "\n"
 
-file_line_ending("my-file-2")
+file_line_endings("my-file-2")
 #> [1] "\r\n"
 
 read_lines("my-file")
@@ -65,11 +65,11 @@ bench::mark(
   check = FALSE
 )
 #> # A tibble: 3 x 6
-#>   expression                              min median `itr/sec` mem_alloc
-#>   <bch:expr>                            <bch> <bch:>     <dbl> <bch:byt>
-#> 1 brio::write_lines(data, "benchmark")  792µs 1.16ms      831.        0B
-#> 2 readr::write_lines(data, "benchmark")   1ms 1.24ms      780.    2.49KB
-#> 3 base::writeLines(data, "benchmark")   921µs 1.34ms      765.        0B
+#>   expression                                 min median `itr/sec` mem_alloc
+#>   <bch:expr>                            <bch:tm> <bch:>     <dbl> <bch:byt>
+#> 1 brio::write_lines(data, "benchmark")    1.57ms 1.94ms      516.        0B
+#> 2 readr::write_lines(data, "benchmark")   1.08ms 1.84ms      541.    2.49KB
+#> 3 base::writeLines(data, "benchmark")   946.54µs 1.34ms      745.        0B
 #> # … with 1 more variable: `gc/sec` <dbl>
 ```
 
@@ -87,9 +87,9 @@ bench::mark(
 #> # A tibble: 3 x 6
 #>   expression                          min   median `itr/sec` mem_alloc
 #>   <bch:expr>                     <bch:tm> <bch:tm>     <dbl> <bch:byt>
-#> 1 brio::read_lines("benchmark")  685.56µs 718.11µs     1372.    8.05KB
-#> 2 readr::read_lines("benchmark")    1.5ms   1.55ms      630.   10.35KB
-#> 3 base::readLines("benchmark")     3.53ms   3.67ms      267.   31.39KB
+#> 1 brio::read_lines("benchmark")  686.53µs 719.68µs     1327.    8.05KB
+#> 2 readr::read_lines("benchmark")   1.53ms    1.6ms      606.   10.35KB
+#> 3 base::readLines("benchmark")     3.62ms   3.86ms      253.   31.39KB
 #> # … with 1 more variable: `gc/sec` <dbl>
 
 unlink("benchmark")

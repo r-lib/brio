@@ -5,7 +5,7 @@
 
 #include "brio.h"
 
-SEXP brio_file_line_ending(SEXP path) {
+SEXP brio_file_line_endings(SEXP path) {
   const char* path_c = CHAR(STRING_ELT(path, 0));
 
   FILE* fp;

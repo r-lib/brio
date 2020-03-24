@@ -6,7 +6,7 @@
 #'   - '\\r\\n' - if the file uses Windows line endings
 #'   - NA - if it cannot be determined
 #' @export
-file_line_ending <- function(path) {
+file_line_endings <- function(path) {
   path <- normalizePath(path, mustWork = TRUE)
-  .Call(brio_file_line_ending, path)
+  .Call(brio_file_line_endings, path)
 }
