@@ -68,7 +68,8 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
         ans_size *= 2;
         ans = Rf_lengthgets(ans, ans_size);
       }
-      SET_STRING_ELT(ans, num_out++, mkCharCE(line_buf, CE_UTF8));
+      SET_STRING_ELT(
+          ans, num_out++, mkCharLenCE(line_buf, line_pos + len, CE_UTF8));
 
       if (n_c > 0 && num_out >= n_c) {
         fclose(fp);
@@ -97,6 +98,8 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
       ans_size *= 2;
       ans = Rf_lengthgets(ans, ans_size);
     }
+
+    // TODO: track the line_buf size so we can use mkCharLenCE here.
     SET_STRING_ELT(ans, num_out++, mkCharCE(line_buf, CE_UTF8));
   }
 
