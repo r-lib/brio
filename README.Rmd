@@ -23,7 +23,6 @@ knitr::opts_chunk$set(
 Functions to handle basic input output, these functions always
 read and write UTF-8 files and provide more explicit control over line endings.
 
-
 ## Reading files
 
 ```{r}
@@ -52,13 +51,15 @@ gen_random <- function(characters, num_lines, min, max) {
   vapply(line_lengths, function(len) paste(sample(characters, len, replace = TRUE), collapse = ""), character(1))
 }
 
+set.seed(42)
+
 # generate 1000 random lines between 100-1000 characters long
 data <- gen_random(letters, 1000, min = 100, max = 1000)
 ```
 
 ## Writing
 
-Write speeds are basically the same regardless of method, though brio does avoid any extra memory allocations.
+Write speeds are basically the same regardless of method, though brio does avoid some extra memory allocations.
 
 ```{r}
 bench::mark(
@@ -71,7 +72,7 @@ bench::mark(
 
 ## Reading
 
-Reading speeds are a decent amount faster with brio, mainly due to larger block sizes and avoidance of unnecessary copies.
+Reading speeds are a decent amount faster with brio, mainly due to larger block sizes and avoidance of extra copies.
 
 ```{r}
 bench::mark(

@@ -46,6 +46,8 @@ gen_random <- function(characters, num_lines, min, max) {
   vapply(line_lengths, function(len) paste(sample(characters, len, replace = TRUE), collapse = ""), character(1))
 }
 
+set.seed(42)
+
 # generate 1000 random lines between 100-1000 characters long
 data <- gen_random(letters, 1000, min = 100, max = 1000)
 ```
@@ -53,7 +55,7 @@ data <- gen_random(letters, 1000, min = 100, max = 1000)
 ## Writing
 
 Write speeds are basically the same regardless of method, though brio
-does avoid any extra memory allocations.
+does avoid some extra memory allocations.
 
 ``` r
 bench::mark(
@@ -63,18 +65,18 @@ bench::mark(
   check = FALSE
 )
 #> # A tibble: 3 x 6
-#>   expression                               min median `itr/sec` mem_alloc
-#>   <bch:expr>                            <bch:> <bch:>     <dbl> <bch:byt>
-#> 1 brio::write_lines(data, "benchmark")  1.06ms 1.24ms      760.        0B
-#> 2 readr::write_lines(data, "benchmark") 1.17ms 1.36ms      591.    3.54MB
-#> 3 base::writeLines(data, "benchmark")   1.13ms 1.38ms      679.    6.91KB
+#>   expression                              min median `itr/sec` mem_alloc
+#>   <bch:expr>                            <bch> <bch:>     <dbl> <bch:byt>
+#> 1 brio::write_lines(data, "benchmark")  792µs 1.16ms      831.        0B
+#> 2 readr::write_lines(data, "benchmark")   1ms 1.24ms      780.    2.49KB
+#> 3 base::writeLines(data, "benchmark")   921µs 1.34ms      765.        0B
 #> # … with 1 more variable: `gc/sec` <dbl>
 ```
 
 ## Reading
 
 Reading speeds are a decent amount faster with brio, mainly due to
-larger block sizes and avoidance of unnecessary copies.
+larger block sizes and avoidance of extra copies.
 
 ``` r
 bench::mark(
@@ -83,11 +85,12 @@ bench::mark(
   base::readLines("benchmark")
 )
 #> # A tibble: 3 x 6
-#>   expression                          min   median `itr/sec` mem_alloc `gc/sec`
-#>   <bch:expr>                     <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
-#> 1 brio::read_lines("benchmark")  966.43µs   1.04ms      925.    8.05KB        0
-#> 2 readr::read_lines("benchmark")   1.79ms   1.84ms      530.   609.9KB        0
-#> 3 base::readLines("benchmark")     4.82ms   4.96ms      200.   31.39KB        0
+#>   expression                          min   median `itr/sec` mem_alloc
+#>   <bch:expr>                     <bch:tm> <bch:tm>     <dbl> <bch:byt>
+#> 1 brio::read_lines("benchmark")  685.56µs 718.11µs     1372.    8.05KB
+#> 2 readr::read_lines("benchmark")    1.5ms   1.55ms      630.   10.35KB
+#> 3 base::readLines("benchmark")     3.53ms   3.67ms      267.   31.39KB
+#> # … with 1 more variable: `gc/sec` <dbl>
 
 unlink("benchmark")
 ```
