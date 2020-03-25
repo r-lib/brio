@@ -5,6 +5,16 @@
 
 #include "brio.h"
 
+SEXP set(SEXP x, int i, SEXP val) {
+  R_xlen_t len = Rf_xlength(x);
+  if (i >= len) {
+    len *= 2;
+    x = Rf_lengthgets(x, len);
+  }
+  SET_STRING_ELT(x, i, val);
+  return x;
+}
+
 SEXP brio_read_lines(SEXP path, SEXP n) {
   int n_c = INTEGER(n)[0];
   const char* path_c = CHAR(STRING_ELT(path, 0));
@@ -21,7 +31,9 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
   SEXP ans;
 
   R_xlen_t ans_size = n_c >= 0 ? n_c : 1024;
-  PROTECT(ans = allocVector(STRSXP, ans_size));
+  ans = allocVector(STRSXP, ans_size);
+  PROTECT_INDEX ans_idx;
+  PROTECT_WITH_INDEX(ans, &ans_idx);
 
   const size_t READ_BUF_SIZE = 1024 * 1024;
   char read_buf[READ_BUF_SIZE];
@@ -64,12 +76,9 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
       memcpy(line_buf + line_pos, prev_result, len);
       line_buf[line_pos + len] = '\0';
 
-      if (num_out == ans_size) {
-        ans_size *= 2;
-        ans = Rf_lengthgets(ans, ans_size);
-      }
-      SET_STRING_ELT(
-          ans, num_out++, mkCharLenCE(line_buf, line_pos + len, CE_UTF8));
+      SEXP str = PROTECT(mkCharLenCE(line_buf, line_pos + len, CE_UTF8));
+      REPROTECT(ans = set(ans, num_out++, str), ans_idx);
+      UNPROTECT(1);
 
       if (n_c > 0 && num_out >= n_c) {
         fclose(fp);
@@ -94,16 +103,13 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
   }
 
   if (line_pos > 0) {
-    if (num_out == ans_size) {
-      ans_size *= 2;
-      ans = Rf_lengthgets(ans, ans_size);
-    }
-
     // TODO: track the line_buf size so we can use mkCharLenCE here.
-    SET_STRING_ELT(ans, num_out++, mkCharCE(line_buf, CE_UTF8));
+    SEXP str = PROTECT(mkCharCE(line_buf, CE_UTF8));
+    REPROTECT(ans = set(ans, num_out++, str), ans_idx);
+    UNPROTECT(1);
   }
 
-  if (num_out < ans_size) {
+  if (num_out < Rf_xlength(ans)) {
     SETLENGTH(ans, num_out);
     SET_TRUELENGTH(ans, num_out);
   }
