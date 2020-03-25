@@ -7,7 +7,7 @@
 read_lines(path, n = -1)
 }
 \arguments{
-\item{path}{A character string giving the file path.}
+\item{path}{A character string of the path to the file to read.}
 
 \item{n}{integer. The number of lines to read. A negative number means read
 all the lines in the file.}

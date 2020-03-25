@@ -7,7 +7,7 @@
 file_line_endings(path)
 }
 \arguments{
-\item{path}{A character string giving the file path.}
+\item{path}{A character string of the path to the file to read.}
 }
 \value{
 The line endings used, one of

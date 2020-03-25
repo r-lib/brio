@@ -10,7 +10,7 @@ read_file(path)
 read_file_raw(path)
 }
 \arguments{
-\item{path}{A character string giving the file path.}
+\item{path}{A character string of the path to the file to read.}
 }
 \value{
 \itemize{
