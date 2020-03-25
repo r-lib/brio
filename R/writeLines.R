@@ -11,6 +11,7 @@
 #' @param sep The end of line characters to use between lines.
 #' @param useBytes Ignored, with a warning.
 #' @return The UTF-8 encoded input text (invisibly).
+#' @seealso readLines
 #' @export
 #' @examples
 #' tf <- tempfile()

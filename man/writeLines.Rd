@@ -43,3 +43,6 @@ writeLines(rownames(mtcars), tf, useBytes = TRUE)
 
 unlink(tf)
 }
+\seealso{
+readLines
+}

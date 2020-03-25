@@ -15,6 +15,7 @@
 #' @param skipNul Ignored, with a warning.
 #' @export
 #' @return A UTF-8 encoded character vector of the lines in the file.
+#' @seealso writeLines
 #' @examples
 #' authors_file <- file.path(R.home("doc"), "AUTHORS")
 #' data <- readLines(authors_file)

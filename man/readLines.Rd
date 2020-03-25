@@ -46,3 +46,6 @@ close(con)
 # Trying to use unsupported args throws a warning
 data <- readLines(authors_file, encoding = "UTF-16")
 }
+\seealso{
+writeLines
+}
