@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read text lines from a file — read_lines • brio</title>
+<title>Write lines to a file — writeLines • brio</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,15 @@
 
 
 
-<meta property="og:title" content="Read text lines from a file — read_lines" />
-<meta property="og:description" content="The file is assumed to be UTF-8 and the resulting text has its encoding set
-as such." />
+<meta property="og:title" content="Write lines to a file — writeLines" />
+<meta property="og:description" content="This is a drop in replacement for base::writeLines() with restricted
+functionality. Compared to base::writeLines() it:
+Only works with file paths, not connections.
+Uses enc2utf8() to convert text() to UTF-8 before writing.
+Uses sep unconditionally as the line ending, regardless of platform.
+The useBytes argument is ignored, with a warning.
+
+" />
 
 
 
@@ -109,39 +115,61 @@ as such." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read text lines from a file</h1>
-    <small class="dont-index">Source: <a href='https://github.com/r-lib/brio/blob/master/R/read_lines.R'><code>R/read_lines.R</code></a></small>
-    <div class="hidden name"><code>read_lines.Rd</code></div>
+    <h1>Write lines to a file</h1>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/brio/blob/master/R/write_lines.R'><code>R/write_lines.R</code></a></small>
+    <div class="hidden name"><code>writeLines.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The file is assumed to be UTF-8 and the resulting text has its encoding set
-as such.</p>
+    <p>This is a drop in replacement for <code><a href='https://rdrr.io/r/base/writeLines.html'>base::writeLines()</a></code> with restricted
+functionality. Compared to <code><a href='https://rdrr.io/r/base/writeLines.html'>base::writeLines()</a></code> it:</p><ul>
+<li><p>Only works with file paths, not connections.</p></li>
+<li><p>Uses <code><a href='https://rdrr.io/r/base/Encoding.html'>enc2utf8()</a></code> to convert <code><a href='https://rdrr.io/r/graphics/text.html'>text()</a></code> to UTF-8 before writing.</p></li>
+<li><p>Uses <code>sep</code> unconditionally as the line ending, regardless of platform.</p></li>
+<li><p>The <code>useBytes</code> argument is ignored, with a warning.</p></li>
+</ul>
+
     </div>
 
-    <pre class="usage"><span class='fu'>read_lines</span>(<span class='no'>path</span>, <span class='kw'>n</span> <span class='kw'>=</span> -<span class='fl'>1</span>)</pre>
+    <pre class="usage"><span class='fu'>writeLines</span>(<span class='no'>text</span>, <span class='no'>con</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"\n"</span>, <span class='no'>useBytes</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>path</th>
-      <td><p>A character string of the path to the file to read.</p></td>
+      <th>text</th>
+      <td><p>A character vector to write</p></td>
     </tr>
     <tr>
-      <th>n</th>
-      <td><p>integer. The number of lines to read. A negative number means read
-all the lines in the file.</p></td>
+      <th>con</th>
+      <td><p>A character string of the path to a file. Throws an error if a connection object is passed.</p></td>
+    </tr>
+    <tr>
+      <th>sep</th>
+      <td><p>The end of line characters to use between lines.</p></td>
+    </tr>
+    <tr>
+      <th>useBytes</th>
+      <td><p>Ignored, with a warning.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A UTF-8 encoded character vector of the lines in the file.</p>
+    <p>The UTF-8 encoded input text (invisibly).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>authors_file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Rhome.html'>R.home</a></span>(<span class='st'>"doc"</span>), <span class='st'>"AUTHORS"</span>)
-<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'>read_lines</span>(<span class='no'>authors_file</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>tf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
+
+<span class='fu'>writeLines</span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>), <span class='no'>tf</span>)
+
+<span class='co'># Trying to use connections throws an error</span>
+<span class='no'>con</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/connections.html'>file</a></span>(<span class='no'>tf</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/try.html'>try</a></span>(<span class='fu'>writeLines</span>(<span class='no'>con</span>))</div><div class='output co'>#&gt; Error in writeLines(con) : argument "con" is missing, with no default</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/connections.html'>close</a></span>(<span class='no'>con</span>)
+
+<span class='co'># Trying to use unsupported args throws a warning</span>
+<span class='fu'>writeLines</span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>), <span class='no'>tf</span>, <span class='kw'>useBytes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `useBytes` is ignored by brio::writeLines()</span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='no'>tf</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
