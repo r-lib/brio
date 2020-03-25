@@ -13,7 +13,7 @@ FILE* open_with_widechar_on_windows(const char* path, const char* mode) {
   // Only usage is 2 characters so max 8 bytes + 2 byte null.
   wchar_t mode_w[10];
   MultiByteToWideChar(CP_UTF8, 0, mode, -1, mode_w, 9);
-  
+
   // Then convert the path
   wchar_t* buf;
   size_t len = MultiByteToWideChar(CP_UTF8, 0, path, -1, NULL, 0);

@@ -1,7 +1,7 @@
 Package: brio
 Title: Basic R Input Output
 Version: 0.0.0.9000
-Authors@R: 
+Authors@R:
     c(person(given = "Jim",
              family = "Hester",
              role = c("aut", "cre"),
@@ -17,7 +17,7 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.0.2
-Suggests: 
+Suggests:
     testthat (>= 2.1.0),
     covr
 URL: https://github.com/r-lib/brio
