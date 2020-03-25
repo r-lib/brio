@@ -6,13 +6,40 @@
 \usage{
 writeLines(text, con, sep = "\\n", useBytes)
 }
+\arguments{
+\item{text}{A character vector to write}
+
+\item{con}{A character string of the path to a file. Throws an error if a connection object is passed.}
+
+\item{sep}{The end of line characters to use between lines.}
+
+\item{useBytes}{Ignored, with a warning.}
+}
+\value{
+The UTF-8 encoded input text (invisibly).
+}
 \description{
 This is a drop in replacement for \code{\link[base:writeLines]{base::writeLines()}} with restricted
 functionality. Compared to \code{\link[base:writeLines]{base::writeLines()}} it:
 \itemize{
 \item Only works with file paths, not connections.
 \item Uses \code{\link[=enc2utf8]{enc2utf8()}} to convert \code{text()} to UTF-8 before writing.
-\item Uses \code{sep} uncoditionally as the line ending, regardless of platform.
+\item Uses \code{sep} unconditionally as the line ending, regardless of platform.
 \item The \code{useBytes} argument is ignored, with a warning.
 }
+}
+\examples{
+tf <- tempfile()
+
+writeLines(rownames(mtcars), tf)
+
+# Trying to use connections throws an error
+con <- file(tf)
+try(writeLines(con))
+close(con)
+
+# Trying to use unsupported args throws a warning
+writeLines(rownames(mtcars), tf, useBytes = TRUE)
+
+unlink(tf)
 }

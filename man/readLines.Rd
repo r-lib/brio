@@ -7,7 +7,7 @@
 readLines(con, n = -1, ok, warn, encoding, skipNul)
 }
 \arguments{
-\item{con}{A character string of the path to the file to read. Throws an error if a connection object is passed.}
+\item{con}{A character string of the path to a file. Throws an error if a connection object is passed.}
 
 \item{n}{integer. The number of lines to read. A negative number means read
 all the lines in the file.}
@@ -19,6 +19,9 @@ all the lines in the file.}
 \item{encoding}{Ignored, with a warning.}
 
 \item{skipNul}{Ignored, with a warning.}
+}
+\value{
+A UTF-8 encoded character vector of the lines in the file.
 }
 \description{
 This is a drop in replacement for \code{\link[base:readLines]{base::readLines()}} with restricted
@@ -40,6 +43,6 @@ con <- file(authors_file)
 try(readLines(con))
 close(con)
 
-# Trying to use the unsupported args throws a warning
+# Trying to use unsupported args throws a warning
 data <- readLines(authors_file, encoding = "UTF-16")
 }

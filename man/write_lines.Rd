@@ -11,7 +11,7 @@ write_lines(text, path, eol = "\\n")
 
 \item{path}{A character string giving the file path to write to.}
 
-\item{eol}{The end of line character to use between lines.}
+\item{eol}{The end of line characters to use between lines.}
 }
 \value{
 The UTF-8 encoded input text (invisibly).
