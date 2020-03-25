@@ -134,7 +134,7 @@ test_that("read_lines works with really long lines", {
   data <- rep(paste(rep("a", 1024 * 1024 - 2), collapse = ""), 5)
 
   con <- file(tmp, "wb")
-  writeLines(data, con, sep = "\r\n")
+  base::writeLines(data, con, sep = "\r\n")
   close(con)
 
   expect_equal(read_lines(tmp), data)

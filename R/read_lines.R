@@ -18,7 +18,8 @@ read_lines <- function(path, n = -1) {
 
 #' Read text lines from a file
 #'
-#' This is a drop in replacement for [base::readLines()] with restricted functionality. Compared to [base::readLines()] it:
+#' This is a drop in replacement for [base::readLines()] with restricted
+#' functionality. Compared to [base::readLines()] it:
 #' - Only works with file paths, not connections.
 #' - Assumes the files are always UTF-8 encoded.
 #' - Does not warn or skip embedded nulls, they will likely crash R.

@@ -21,7 +21,8 @@ all the lines in the file.}
 \item{skipNul}{Ignored, with a warning.}
 }
 \description{
-This is a drop in replacement for \code{\link[base:readLines]{base::readLines()}} with restricted functionality. Compared to \code{\link[base:readLines]{base::readLines()}} it:
+This is a drop in replacement for \code{\link[base:readLines]{base::readLines()}} with restricted
+functionality. Compared to \code{\link[base:readLines]{base::readLines()}} it:
 \itemize{
 \item Only works with file paths, not connections.
 \item Assumes the files are always UTF-8 encoded.
@@ -38,4 +39,7 @@ data <- readLines(authors_file)
 con <- file(authors_file)
 try(readLines(con))
 close(con)
+
+# Trying to use the unsupported args throws a warning
+data <- readLines(authors_file, encoding = "UTF-16")
 }
