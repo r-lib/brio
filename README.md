@@ -35,6 +35,19 @@ read_lines("my-file")
 unlink(c("my-file", "my-file-2"))
 ```
 
+## Drop-ins
+
+brio also has `readLines()` and `writeLines()` functions drop-in
+replacements for `base::readLines()` and `base::writeLines()`. These
+functions are thin wrappers around `brio::read_lines()` and
+`brio::write_lines()`, with deliberately fewer features than the base
+equivalents. If you want to convert a package to using brio you can add
+the following line and re-document.
+
+``` r
+#' @importFrom brio readLines writeLines
+```
+
 ## Benchmarks
 
 Speed is not necessarily a goal of brio, but it does end up being a nice
@@ -68,9 +81,9 @@ bench::mark(
 #> # A tibble: 3 x 6
 #>   expression                          min   median `itr/sec` mem_alloc
 #>   <bch:expr>                     <bch:tm> <bch:tm>     <dbl> <bch:byt>
-#> 1 brio::read_lines("benchmark")  694.92µs 723.33µs     1306.    8.05KB
-#> 2 readr::read_lines("benchmark")   1.52ms    1.6ms      607.   10.35KB
-#> 3 base::readLines("benchmark")     3.67ms   3.88ms      247.   31.39KB
+#> 1 brio::read_lines("benchmark")  661.33µs 696.57µs     1357.    8.05KB
+#> 2 readr::read_lines("benchmark")   1.49ms   1.56ms      623.   10.35KB
+#> 3 base::readLines("benchmark")     3.54ms   3.83ms      249.   31.39KB
 #> # … with 1 more variable: `gc/sec` <dbl>
 ```
 
@@ -87,11 +100,11 @@ bench::mark(
   check = FALSE
 )
 #> # A tibble: 3 x 6
-#>   expression                              min median `itr/sec` mem_alloc
-#>   <bch:expr>                            <bch> <bch:>     <dbl> <bch:byt>
-#> 1 brio::write_lines(data, "benchmark")  912µs 1.09ms      896.        0B
-#> 2 readr::write_lines(data, "benchmark") 941µs 1.16ms      833.    2.49KB
-#> 3 base::writeLines(data, "benchmark")   925µs 1.18ms      820.        0B
+#>   expression                                 min median `itr/sec` mem_alloc
+#>   <bch:expr>                            <bch:tm> <bch:>     <dbl> <bch:byt>
+#> 1 brio::write_lines(data, "benchmark")  891.35µs 1.15ms      852.        0B
+#> 2 readr::write_lines(data, "benchmark") 924.96µs 1.17ms      811.    2.49KB
+#> 3 base::writeLines(data, "benchmark")     1.09ms 1.35ms      756.        0B
 #> # … with 1 more variable: `gc/sec` <dbl>
 
 unlink("benchmark")

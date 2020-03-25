@@ -41,6 +41,18 @@ read_lines("my-file")
 unlink(c("my-file", "my-file-2"))
 ```
 
+## Drop-ins
+
+brio also has `readLines()` and `writeLines()` functions drop-in replacements
+for `base::readLines()` and `base::writeLines()`. These functions are thin
+wrappers around `brio::read_lines()` and `brio::write_lines()`, with
+deliberately fewer features than the base equivalents. If you want to convert a
+package to using brio you can add the following line and re-document.
+
+```r
+#' @importFrom brio readLines writeLines
+```
+
 ## Benchmarks
 
 Speed is not necessarily a goal of brio, but it does end up being a nice side effect.
