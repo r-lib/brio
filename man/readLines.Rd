@@ -47,5 +47,5 @@ close(con)
 data <- readLines(authors_file, encoding = "UTF-16")
 }
 \seealso{
-writeLines
+\code{\link[=writeLines]{writeLines()}}
 }
