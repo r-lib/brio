@@ -5,7 +5,24 @@
 
 #include "brio.h"
 
-SEXP set(SEXP x, int i, SEXP val) {
+typedef struct {
+  char* data;
+  size_t size;
+  size_t limit;
+} str_buf;
+
+void str_buf_set(str_buf* buf, const char* in, size_t in_size) {
+  while (buf->size + in_size >= buf->limit) {
+    buf->limit *= 2;
+    buf->data = realloc(buf->data, buf->limit);
+  }
+
+  memcpy(buf->data + buf->size, in, in_size);
+  buf->size += in_size;
+  buf->data[buf->size] = '\0';
+}
+
+SEXP str_sxp_set(SEXP x, int i, SEXP val) {
   R_xlen_t len = Rf_xlength(x);
   if (i >= len) {
     len *= 2;
@@ -17,10 +34,11 @@ SEXP set(SEXP x, int i, SEXP val) {
 
 SEXP brio_read_lines(SEXP path, SEXP n) {
   int n_c = INTEGER(n)[0];
-  const char* path_c = CHAR(STRING_ELT(path, 0));
   if (n_c == 0) {
     return allocVector(STRSXP, 0);
   }
+
+  const char* path_c = CHAR(STRING_ELT(path, 0));
 
   FILE* fp;
 
@@ -28,94 +46,77 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
     error("Could not open file: %s", path_c);
   }
 
-  SEXP ans;
+  SEXP out;
 
-  R_xlen_t ans_size = n_c >= 0 ? n_c : 1024;
-  ans = allocVector(STRSXP, ans_size);
-  PROTECT_INDEX ans_idx;
-  PROTECT_WITH_INDEX(ans, &ans_idx);
+  out = allocVector(STRSXP, n_c >= 0 ? n_c : 1024);
+  PROTECT_INDEX out_idx;
+  PROTECT_WITH_INDEX(out, &out_idx);
 
   const size_t READ_BUF_SIZE = 1024 * 1024;
   char read_buf[READ_BUF_SIZE];
-  char* line_buf;
-  size_t line_pos = 0;
-  size_t line_size = 1024;
-  R_xlen_t num_out = 0;
+  R_xlen_t out_num = 0;
 
-  line_buf = (char*)malloc(line_size);
+  str_buf line;
+  line.limit = 1024;
+  line.data = (char*)malloc(line.limit);
+  line.size = 0;
 
   size_t read_size = 0;
   while ((read_size = fread(read_buf, 1, READ_BUF_SIZE - 1, fp)) > 0) {
     read_buf[read_size] = '\0';
     // Find the newlines
-    const char* prev_result = read_buf;
-    const char* result = read_buf;
+    const char* prev_newline = read_buf;
+    const char* next_newline = read_buf;
 
-    while ((result = strchr(prev_result, '\n')) != NULL) {
-      size_t len = result - prev_result;
+    while ((next_newline = strchr(prev_newline, '\n')) != NULL) {
+      size_t len = next_newline - prev_newline;
 
       if (len == 0) {
-        if (line_pos > 0) {
-          if (line_buf[line_pos - 1] == '\r') {
-            line_buf[line_pos - 1] = '\0';
-            --line_pos;
+        if (line.size > 0) {
+          if (line.data[line.size - 1] == '\r') {
+            --line.size;
+            line.data[line.size] = '\0';
           }
         }
       } else {
-        if ((result - 1)[0] == '\r') {
+        if ((next_newline - 1)[0] == '\r') {
           --len;
         }
       }
 
-      while (line_pos + len >= line_size) {
-        // The line_buf needs to get bigger
-        line_size *= 2;
-        line_buf = realloc(line_buf, line_size);
-      }
+      str_buf_set(&line, prev_newline, len);
 
-      memcpy(line_buf + line_pos, prev_result, len);
-      line_buf[line_pos + len] = '\0';
-
-      SEXP str = PROTECT(mkCharLenCE(line_buf, line_pos + len, CE_UTF8));
-      REPROTECT(ans = set(ans, num_out++, str), ans_idx);
+      SEXP str = PROTECT(mkCharLenCE(line.data, line.size, CE_UTF8));
+      REPROTECT(out = str_sxp_set(out, out_num++, str), out_idx);
       UNPROTECT(1);
 
-      if (n_c > 0 && num_out >= n_c) {
+      if (n_c > 0 && out_num >= n_c) {
         fclose(fp);
         UNPROTECT(1);
-        return ans;
+        return out;
       }
 
-      prev_result = result + 1;
-      line_pos = 0;
+      prev_newline = next_newline + 1;
+      line.size = 0;
     }
 
-    size_t len = read_size - (prev_result - read_buf);
-    while (line_pos + len >= line_size) {
-      // The line_buf needs to get bigger
-      line_size *= 2;
-      line_buf = realloc(line_buf, line_size);
-    }
-
-    memcpy(line_buf + line_pos, prev_result, len);
-    line_pos += len;
-    line_buf[line_pos] = '\0';
+    size_t len = read_size - (prev_newline - read_buf);
+    str_buf_set(&line, prev_newline, len);
   }
 
-  if (line_pos > 0) {
-    // TODO: track the line_buf size so we can use mkCharLenCE here.
-    SEXP str = PROTECT(mkCharCE(line_buf, CE_UTF8));
-    REPROTECT(ans = set(ans, num_out++, str), ans_idx);
+  if (line.size > 0) {
+    SEXP str = PROTECT(mkCharCE(line.data, CE_UTF8));
+    REPROTECT(out = str_sxp_set(out, out_num++, str), out_idx);
     UNPROTECT(1);
   }
 
-  if (num_out < Rf_xlength(ans)) {
-    SETLENGTH(ans, num_out);
-    SET_TRUELENGTH(ans, num_out);
+  if (out_num < Rf_xlength(out)) {
+    SETLENGTH(out, out_num);
+    SET_TRUELENGTH(out, out_num);
   }
 
   fclose(fp);
 
   UNPROTECT(1);
-  return ans;
+  return out;
 }
