@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">brio</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -127,10 +127,10 @@
 <span class="co">#&gt; # A tibble: 3 x 6</span>
 <span class="co">#&gt;   expression                          min   median `itr/sec` mem_alloc</span>
 <span class="co">#&gt;   &lt;bch:expr&gt;                     &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;</span>
-<span class="co">#&gt; 1 brio::read_lines("benchmark")  661.33µs 696.57µs     1357.    8.05KB</span>
+<span class="co">#&gt; 1 brio::read_lines("benchmark")  661.33Âµs 696.57Âµs     1357.    8.05KB</span>
 <span class="co">#&gt; 2 readr::read_lines("benchmark")   1.49ms   1.56ms      623.   10.35KB</span>
 <span class="co">#&gt; 3 base::readLines("benchmark")     3.54ms   3.83ms      249.   31.39KB</span>
-<span class="co">#&gt; # … with 1 more variable: `gc/sec` &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; # â¦ with 1 more variable: `gc/sec` &lt;dbl&gt;</span></pre></div>
 </div>
 <div id="writing" class="section level3">
 <h3 class="hasAnchor">
@@ -145,10 +145,10 @@
 <span class="co">#&gt; # A tibble: 3 x 6</span>
 <span class="co">#&gt;   expression                                 min median `itr/sec` mem_alloc</span>
 <span class="co">#&gt;   &lt;bch:expr&gt;                            &lt;bch:tm&gt; &lt;bch:&gt;     &lt;dbl&gt; &lt;bch:byt&gt;</span>
-<span class="co">#&gt; 1 brio::write_lines(data, "benchmark")  891.35µs 1.15ms      852.        0B</span>
-<span class="co">#&gt; 2 readr::write_lines(data, "benchmark") 924.96µs 1.17ms      811.    2.49KB</span>
+<span class="co">#&gt; 1 brio::write_lines(data, "benchmark")  891.35Âµs 1.15ms      852.        0B</span>
+<span class="co">#&gt; 2 readr::write_lines(data, "benchmark") 924.96Âµs 1.17ms      811.    2.49KB</span>
 <span class="co">#&gt; 3 base::writeLines(data, "benchmark")     1.09ms 1.35ms      756.        0B</span>
-<span class="co">#&gt; # … with 1 more variable: `gc/sec` &lt;dbl&gt;</span>
+<span class="co">#&gt; # â¦ with 1 more variable: `gc/sec` &lt;dbl&gt;</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span>(<span class="st">"benchmark"</span>)</pre></div>
 </div>
@@ -160,6 +160,8 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=brio">https://​cloud.r-project.org/​package=brio</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/r-lib/brio/">https://​github.com/​r-lib/​brio/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/r-lib/brio/issues">https://​github.com/​r-lib/​brio/​issues</a>
@@ -199,7 +201,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.9000.</p>
 </div>
 
       </footer>
