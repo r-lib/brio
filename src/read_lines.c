@@ -5,6 +5,19 @@
 
 #include "brio.h"
 
+// A macro similar to SET_STRING_ELT, it assumes a string vector protected with
+// PROTECT_WITH_INDEX, will automatically grow it if needed.
+#define SET_STRING_ELT2(X, I, VAL, P_IDX)                                      \
+  ({                                                                           \
+    R_xlen_t len = Rf_xlength(X);                                              \
+    R_xlen_t i = I;                                                            \
+    while (i >= len) {                                                         \
+      len *= 2;                                                                \
+      REPROTECT(X = Rf_lengthgets(X, len), P_IDX);                             \
+    }                                                                          \
+    SET_STRING_ELT(X, i, VAL);                                                 \
+  })
+
 typedef struct {
   char* data;
   size_t size;
@@ -20,16 +33,6 @@ void str_buf_set(str_buf* buf, const char* in, size_t in_size) {
   memcpy(buf->data + buf->size, in, in_size);
   buf->size += in_size;
   buf->data[buf->size] = '\0';
-}
-
-SEXP str_sxp_set(SEXP x, int i, SEXP val) {
-  R_xlen_t len = Rf_xlength(x);
-  if (i >= len) {
-    len *= 2;
-    x = Rf_lengthgets(x, len);
-  }
-  SET_STRING_ELT(x, i, val);
-  return x;
 }
 
 SEXP brio_read_lines(SEXP path, SEXP n) {
@@ -87,7 +90,7 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
       str_buf_set(&line, prev_newline, len);
 
       SEXP str = PROTECT(mkCharLenCE(line.data, line.size, CE_UTF8));
-      REPROTECT(out = str_sxp_set(out, out_num++, str), out_idx);
+      SET_STRING_ELT2(out, out_num++, str, out_idx);
       UNPROTECT(1);
 
       if (n_c > 0 && out_num >= n_c) {
@@ -106,7 +109,7 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
 
   if (line.size > 0) {
     SEXP str = PROTECT(mkCharCE(line.data, CE_UTF8));
-    REPROTECT(out = str_sxp_set(out, out_num++, str), out_idx);
+    SET_STRING_ELT2(out, out_num++, str, out_idx);
     UNPROTECT(1);
   }
 
