@@ -19,6 +19,7 @@ SEXP brio_read_file(SEXP path) {
   rewind(fp);
 
   if (file_size == 0) {
+    fclose(fp);
     return allocVector(STRSXP, 0);
   }
 
@@ -28,9 +29,11 @@ SEXP brio_read_file(SEXP path) {
   read_buf[file_size] = '\0';
 
   if ((fread(read_buf, 1, file_size, fp)) <= 0) {
+    fclose(fp);
     error("Error reading file: %s", path_c);
   };
 
+  fclose(fp);
   SEXP ans;
   PROTECT(ans = allocVector(STRSXP, 1));
   SET_STRING_ELT(ans, 0, mkCharLenCE(read_buf, file_size, CE_UTF8));
