@@ -8,7 +8,7 @@
 // A macro similar to SET_STRING_ELT, it assumes a string vector protected with
 // PROTECT_WITH_INDEX, will automatically grow it if needed.
 #define SET_STRING_ELT2(X, I, VAL, P_IDX)                                      \
-  ({                                                                           \
+  {                                                                            \
     R_xlen_t len = Rf_xlength(X);                                              \
     R_xlen_t i = I;                                                            \
     while (i >= len) {                                                         \
@@ -16,7 +16,7 @@
       REPROTECT(X = Rf_lengthgets(X, len), P_IDX);                             \
     }                                                                          \
     SET_STRING_ELT(X, i, VAL);                                                 \
-  })
+  }
 
 typedef struct {
   char* data;
@@ -55,7 +55,7 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
   PROTECT_INDEX out_idx;
   PROTECT_WITH_INDEX(out, &out_idx);
 
-  const size_t READ_BUF_SIZE = 1024 * 1024;
+#define READ_BUF_SIZE 1024 * 1024
   char read_buf[READ_BUF_SIZE];
   R_xlen_t out_num = 0;
 
