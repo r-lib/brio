@@ -1,6 +1,11 @@
 #' Write lines to a file
 #'
 #' The text is converted to UTF-8 encoding before writing.
+#'
+#' The files are opened in binary mode, so they always use exactly the string
+#' given in `eol` as the line separator.
+#'
+#' To write a file with windows line endings use `write_lines(eol = "\r\n")`
 #' @param text A character vector to write
 #' @param path A character string giving the file path to write to.
 #' @param eol The end of line characters to use between lines.
@@ -10,6 +15,9 @@
 #' tf <- tempfile()
 #'
 #' write_lines(rownames(mtcars), tf)
+#'
+#' # Write with Windows style line endings
+#' write_lines(rownames(mtcars), tf, eol = "\r\n")
 #'
 #' unlink(tf)
 write_lines <- function(text, path, eol = "\n") {

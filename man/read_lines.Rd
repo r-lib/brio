@@ -19,6 +19,9 @@ A UTF-8 encoded character vector of the lines in the file.
 The file is assumed to be UTF-8 and the resulting text has its encoding set
 as such.
 }
+\details{
+Both '\r\n' and '\n' are treated as a newline.
+}
 \examples{
 authors_file <- file.path(R.home("doc"), "AUTHORS")
 data <- read_lines(authors_file)

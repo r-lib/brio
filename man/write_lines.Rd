@@ -19,10 +19,19 @@ The UTF-8 encoded input text (invisibly).
 \description{
 The text is converted to UTF-8 encoding before writing.
 }
+\details{
+The files are opened in binary mode, so they always use exactly the string
+given in \code{eol} as the line separator.
+
+To write a file with windows line endings use \code{write_lines(eol = "\\r\\n")}
+}
 \examples{
 tf <- tempfile()
 
 write_lines(rownames(mtcars), tf)
+
+# Write with Windows style line endings
+write_lines(rownames(mtcars), tf, eol = "\r\n")
 
 unlink(tf)
 }
