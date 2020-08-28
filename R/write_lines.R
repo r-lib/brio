@@ -21,8 +21,13 @@
 #'
 #' unlink(tf)
 write_lines <- function(text, path, eol = "\n") {
+  if (length(path) != 1) {
+    stop("`path` must be a single element", call. = FALSE)
+  }
+
   text <- as.character(text)
   text <- enc2utf8(text)
   path <- normalizePath(path, mustWork = FALSE)
+
   invisible(.Call(brio_write_lines, text, path, eol))
 }
