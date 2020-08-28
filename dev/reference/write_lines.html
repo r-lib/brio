@@ -142,11 +142,19 @@
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>The UTF-8 encoded input text (invisibly).</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The files are opened in binary mode, so they always use exactly the string
+given in <code>eol</code> as the line separator.</p>
+<p>To write a file with windows line endings use <code>write_lines(eol = "\r\n")</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>tf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
 
 <span class='fu'>write_lines</span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='kw'>mtcars</span>), <span class='kw'>tf</span>)
+
+<span class='co'># Write with Windows style line endings</span>
+<span class='fu'>write_lines</span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='kw'>mtcars</span>), <span class='kw'>tf</span>, eol = <span class='st'>"\r\n"</span>)
 
 <span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='kw'>tf</span>)
 </div></pre>
