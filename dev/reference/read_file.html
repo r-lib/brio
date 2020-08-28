@@ -122,9 +122,9 @@ read_file_raw() reads an entire file into a raw vector." />
 <code>read_file_raw()</code> reads an entire file into a raw vector.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>read_file</span>(<span class='kw'>path</span>)
+    <pre class="usage"><span class='fu'>read_file</span>(<span class='no'>path</span>)
 
-<span class='fu'>read_file_raw</span>(<span class='kw'>path</span>)</pre>
+<span class='fu'>read_file_raw</span>(<span class='no'>path</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,11 +148,10 @@ read_file_raw() reads an entire file into a raw vector." />
     <p><code>read_file()</code> assumes the file has a UTF-8 encoding.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>authors_file</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Rhome.html'>R.home</a></span>(<span class='st'>"doc"</span>), <span class='st'>"AUTHORS"</span>)
-<span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='fu'>read_file</span>(<span class='kw'>authors_file</span>)
-<span class='kw'>data_raw</span> <span class='op'>&lt;-</span> <span class='fu'>read_file_raw</span>(<span class='kw'>authors_file</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span>(<span class='kw'>data</span>, <span class='fu'><a href='https://rdrr.io/r/base/rawConversion.html'>rawToChar</a></span>(<span class='kw'>data_raw</span>))
-</div><div class='output co'>#&gt; [1] TRUE</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>authors_file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Rhome.html'>R.home</a></span>(<span class='st'>"doc"</span>), <span class='st'>"AUTHORS"</span>)
+<span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='fu'>read_file</span>(<span class='no'>authors_file</span>)
+<span class='no'>data_raw</span> <span class='kw'>&lt;-</span> <span class='fu'>read_file_raw</span>(<span class='no'>authors_file</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span>(<span class='no'>data</span>, <span class='fu'><a href='https://rdrr.io/r/base/rawConversion.html'>rawToChar</a></span>(<span class='no'>data_raw</span>))</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -168,7 +167,7 @@ read_file_raw() reads an entire file into a raw vector." />
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

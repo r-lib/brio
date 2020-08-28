@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Write lines to a file — write_lines • brio</title>
+<title>Write data to a file — write_file • brio</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Write lines to a file — write_lines" />
-<meta property="og:description" content="The text is converted to UTF-8 encoding before writing." />
+<meta property="og:title" content="Write data to a file — write_file" />
+<meta property="og:description" content="This function differs from write_lines()in that it writes the data intext` directly, without any checking or adding any newlines." />
 
 
 <meta name="robots" content="noindex">
@@ -111,50 +111,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Write lines to a file</h1>
-    <small class="dont-index">Source: <a href='https://github.com/r-lib/brio/blob/master/R/write_lines.R'><code>R/write_lines.R</code></a></small>
-    <div class="hidden name"><code>write_lines.Rd</code></div>
+    <h1>Write data to a file</h1>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/brio/blob/master/R/write_file.R'><code>R/write_file.R</code></a></small>
+    <div class="hidden name"><code>write_file.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The text is converted to UTF-8 encoding before writing.</p>
+    <p>This function differs from <code><a href='write_lines.html'>write_lines()</a></code><code>in that it writes the data in</code>text` directly, without any checking or adding any newlines.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>write_lines</span>(<span class='no'>text</span>, <span class='no'>path</span>, <span class='kw'>eol</span> <span class='kw'>=</span> <span class='st'>"\n"</span>)</pre>
+    <pre class="usage"><span class='fu'>write_file</span>(<span class='no'>text</span>, <span class='no'>path</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>text</th>
-      <td><p>A character vector to write</p></td>
+      <td><p>A character vector of length 1 with data to write</p></td>
     </tr>
     <tr>
       <th>path</th>
       <td><p>A character string giving the file path to write to.</p></td>
-    </tr>
-    <tr>
-      <th>eol</th>
-      <td><p>The end of line characters to use between lines.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>The UTF-8 encoded input text (invisibly).</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The files are opened in binary mode, so they always use exactly the string
-given in <code>eol</code> as the line separator.</p>
-<p>To write a file with windows line endings use <code>write_lines(eol = "\r\n")</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>tf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
 
-<span class='fu'>write_lines</span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>), <span class='no'>tf</span>)
-
-<span class='co'># Write with Windows style line endings</span>
-<span class='fu'>write_lines</span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>), <span class='no'>tf</span>, <span class='kw'>eol</span> <span class='kw'>=</span> <span class='st'>"\r\n"</span>)
+<span class='fu'>write_file</span>(<span class='st'>"some data\n"</span>, <span class='no'>tf</span>)
 
 <span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='no'>tf</span>)</div></pre>
   </div>
