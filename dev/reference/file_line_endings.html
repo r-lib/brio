@@ -120,7 +120,7 @@
     <p>Retrieve the type of line endings used by a file</p>
     </div>
 
-    <pre class="usage"><span class='fu'>file_line_endings</span>(<span class='no'>path</span>)</pre>
+    <pre class="usage"><span class='fu'>file_line_endings</span>(<span class='kw'>path</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -141,13 +141,16 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>tf1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
-<span class='no'>tf2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
-<span class='fu'><a href='write_lines.html'>write_lines</a></span>(<span class='st'>"foo"</span>, <span class='no'>tf1</span>, <span class='kw'>eol</span> <span class='kw'>=</span> <span class='st'>"\n"</span>)
-<span class='fu'><a href='write_lines.html'>write_lines</a></span>(<span class='st'>"bar"</span>, <span class='no'>tf2</span>, <span class='kw'>eol</span> <span class='kw'>=</span> <span class='st'>"\r\n"</span>)
+    <pre class="examples"><div class='input'><span class='kw'>tf1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
+<span class='kw'>tf2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
+<span class='fu'><a href='write_lines.html'>write_lines</a></span>(<span class='st'>"foo"</span>, <span class='kw'>tf1</span>, eol = <span class='st'>"\n"</span>)
+<span class='fu'><a href='write_lines.html'>write_lines</a></span>(<span class='st'>"bar"</span>, <span class='kw'>tf2</span>, eol = <span class='st'>"\r\n"</span>)
 
-<span class='fu'>file_line_endings</span>(<span class='no'>tf1</span>)</div><div class='output co'>#&gt; [1] "\n"</div><div class='input'><span class='fu'>file_line_endings</span>(<span class='no'>tf2</span>)</div><div class='output co'>#&gt; [1] "\r\n"</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>tf1</span>, <span class='no'>tf2</span>))</div></pre>
+<span class='fu'>file_line_endings</span>(<span class='kw'>tf1</span>)
+</div><div class='output co'>#&gt; [1] "\n"</div><div class='input'><span class='fu'>file_line_endings</span>(<span class='kw'>tf2</span>)
+</div><div class='output co'>#&gt; [1] "\r\n"</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>tf1</span>, <span class='kw'>tf2</span>))
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
