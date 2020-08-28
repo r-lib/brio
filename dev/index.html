@@ -81,11 +81,12 @@
 <div id="reading-files" class="section level2">
 <h2 class="hasAnchor">
 <a href="#reading-files" class="anchor"></a>Reading files</h2>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">brio</span>)
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/r-lib/brio">brio</a></span>)
 <span class="fu"><a href="reference/write_lines.html">write_lines</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"abc"</span>, <span class="st">"123"</span>), <span class="st">"my-file"</span>)
 
 <span class="co"># Write with windows newlines</span>
-<span class="fu"><a href="reference/write_lines.html">write_lines</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"abc"</span>, <span class="st">"123"</span>), <span class="st">"my-file-2"</span>, <span class="kw">eol</span> <span class="kw">=</span> <span class="st">"\r\n"</span>)
+<span class="fu"><a href="reference/write_lines.html">write_lines</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"abc"</span>, <span class="st">"123"</span>), <span class="st">"my-file-2"</span>, eol = <span class="st">"\r\n"</span>)
 
 <span class="fu"><a href="reference/file_line_endings.html">file_line_endings</a></span>(<span class="st">"my-file"</span>)
 <span class="co">#&gt; [1] "\n"</span>
@@ -96,37 +97,43 @@
 <span class="fu"><a href="reference/read_lines.html">read_lines</a></span>(<span class="st">"my-file"</span>)
 <span class="co">#&gt; [1] "abc" "123"</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"my-file"</span>, <span class="st">"my-file-2"</span>))</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"my-file"</span>, <span class="st">"my-file-2"</span>))
+</pre></div>
 </div>
 <div id="drop-ins" class="section level2">
 <h2 class="hasAnchor">
 <a href="#drop-ins" class="anchor"></a>Drop-ins</h2>
 <p>brio also has <code><a href="reference/readLines.html">readLines()</a></code> and <code><a href="reference/writeLines.html">writeLines()</a></code> functions drop-in replacements for <code><a href="https://rdrr.io/r/base/readLines.html">base::readLines()</a></code> and <code><a href="https://rdrr.io/r/base/writeLines.html">base::writeLines()</a></code>. These functions are thin wrappers around <code><a href="reference/read_lines.html">brio::read_lines()</a></code> and <code><a href="reference/write_lines.html">brio::write_lines()</a></code>, with deliberately fewer features than the base equivalents. If you want to convert a package to using brio you can add the following line and re-document.</p>
-<div class="sourceCode" id="cb2"><pre class="r">#' @importFrom brio readLines writeLines</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co">#' @importFrom brio readLines writeLines</span>
+</pre></div>
 </div>
 <div id="benchmarks" class="section level2">
 <h2 class="hasAnchor">
 <a href="#benchmarks" class="anchor"></a>Benchmarks</h2>
 <p>Speed is not necessarily a goal of brio, but it does end up being a nice side effect.</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="no">gen_random</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">characters</span>, <span class="no">num_lines</span>, <span class="no">min</span>, <span class="no">max</span>) {
-  <span class="no">line_lengths</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample.int</a></span>(<span class="no">max</span> - <span class="no">min</span>, <span class="no">num_lines</span>, <span class="kw">replace</span> <span class="kw">=</span> <span class="fl">TRUE</span>) + <span class="no">min</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span>(<span class="no">line_lengths</span>, <span class="kw">function</span>(<span class="no">len</span>) <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="no">characters</span>, <span class="no">len</span>, <span class="kw">replace</span> <span class="kw">=</span> <span class="fl">TRUE</span>), <span class="kw">collapse</span> <span class="kw">=</span> <span class="st">""</span>), <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span>(<span class="fl">1</span>))
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">gen_random</span> <span class="op">&lt;-</span> <span class="fu">function</span>(<span class="kw">characters</span>, <span class="kw">num_lines</span>, <span class="kw">min</span>, <span class="kw">max</span>) {
+  <span class="kw">line_lengths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample.int</a></span>(<span class="kw">max</span> <span class="op">-</span> <span class="kw">min</span>, <span class="kw">num_lines</span>, replace = <span class="fl">TRUE</span>) <span class="op">+</span> <span class="kw">min</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span>(<span class="kw">line_lengths</span>, <span class="fu">function</span>(<span class="kw">len</span>) <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="kw">characters</span>, <span class="kw">len</span>, replace = <span class="fl">TRUE</span>), collapse = <span class="st">""</span>), <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span>(<span class="fl">1</span>))
 }
 
 <span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span>(<span class="fl">42</span>)
 
 <span class="co"># generate 1000 random lines between 100-1000 characters long</span>
-<span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu">gen_random</span>(<span class="no">letters</span>, <span class="fl">1000</span>, <span class="kw">min</span> <span class="kw">=</span> <span class="fl">100</span>, <span class="kw">max</span> <span class="kw">=</span> <span class="fl">1000</span>)
+<span class="kw">data</span> <span class="op">&lt;-</span> <span class="fu">gen_random</span>(<span class="kw">letters</span>, <span class="fl">1000</span>, min = <span class="fl">100</span>, max = <span class="fl">1000</span>)
 
-<span class="kw pkg">brio</span><span class="kw ns">::</span><span class="fu"><a href="reference/write_lines.html">write_lines</a></span>(<span class="no">data</span>, <span class="st">"benchmark"</span>)</pre></div>
+<span class="kw">brio</span>::<span class="fu"><a href="reference/write_lines.html">write_lines</a></span>(<span class="kw">data</span>, <span class="st">"benchmark"</span>)
+</pre></div>
 <div id="reading" class="section level3">
 <h3 class="hasAnchor">
 <a href="#reading" class="anchor"></a>Reading</h3>
 <p>Reading speeds are a decent amount faster with brio, mainly due to larger block sizes and avoidance of extra copies.</p>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="kw pkg">bench</span><span class="kw ns">::</span><span class="fu">mark</span>(
-  <span class="kw pkg">brio</span><span class="kw ns">::</span><span class="fu"><a href="reference/read_lines.html">read_lines</a></span>(<span class="st">"benchmark"</span>),
-  <span class="kw pkg">readr</span><span class="kw ns">::</span><span class="fu">read_lines</span>(<span class="st">"benchmark"</span>),
-  <span class="kw pkg">base</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span>(<span class="st">"benchmark"</span>)
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">bench</span>::<span class="fu">mark</span>(
+  <span class="kw">brio</span>::<span class="fu"><a href="reference/read_lines.html">read_lines</a></span>(<span class="st">"benchmark"</span>),
+  <span class="kw">readr</span>::<span class="fu">read_lines</span>(<span class="st">"benchmark"</span>),
+  <span class="kw">base</span>::<span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span>(<span class="st">"benchmark"</span>)
 )
 <span class="co">#&gt; # A tibble: 3 x 6</span>
 <span class="co">#&gt;   expression                          min   median `itr/sec` mem_alloc</span>
@@ -134,17 +141,19 @@
 <span class="co">#&gt; 1 brio::read_lines("benchmark")  661.33µs 696.57µs     1357.    8.05KB</span>
 <span class="co">#&gt; 2 readr::read_lines("benchmark")   1.49ms   1.56ms      623.   10.35KB</span>
 <span class="co">#&gt; 3 base::readLines("benchmark")     3.54ms   3.83ms      249.   31.39KB</span>
-<span class="co">#&gt; # … with 1 more variable: `gc/sec` &lt;dbl&gt;</span></pre></div>
+<span class="co">#&gt; # … with 1 more variable: `gc/sec` &lt;dbl&gt;</span>
+</pre></div>
 </div>
 <div id="writing" class="section level3">
 <h3 class="hasAnchor">
 <a href="#writing" class="anchor"></a>Writing</h3>
 <p>Write speeds are basically the same regardless of method, though brio does avoid some extra memory allocations.</p>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="kw pkg">bench</span><span class="kw ns">::</span><span class="fu">mark</span>(
-  <span class="kw pkg">brio</span><span class="kw ns">::</span><span class="fu"><a href="reference/write_lines.html">write_lines</a></span>(<span class="no">data</span>, <span class="st">"benchmark"</span>),
-  <span class="kw pkg">readr</span><span class="kw ns">::</span><span class="fu">write_lines</span>(<span class="no">data</span>, <span class="st">"benchmark"</span>),
-  <span class="kw pkg">base</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span>(<span class="no">data</span>, <span class="st">"benchmark"</span>),
-  <span class="kw">check</span> <span class="kw">=</span> <span class="fl">FALSE</span>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="kw">bench</span>::<span class="fu">mark</span>(
+  <span class="kw">brio</span>::<span class="fu"><a href="reference/write_lines.html">write_lines</a></span>(<span class="kw">data</span>, <span class="st">"benchmark"</span>),
+  <span class="kw">readr</span>::<span class="fu">write_lines</span>(<span class="kw">data</span>, <span class="st">"benchmark"</span>),
+  <span class="kw">base</span>::<span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span>(<span class="kw">data</span>, <span class="st">"benchmark"</span>),
+  check = <span class="fl">FALSE</span>
 )
 <span class="co">#&gt; # A tibble: 3 x 6</span>
 <span class="co">#&gt;   expression                                 min median `itr/sec` mem_alloc</span>
@@ -154,7 +163,8 @@
 <span class="co">#&gt; 3 base::writeLines(data, "benchmark")     1.09ms 1.35ms      756.        0B</span>
 <span class="co">#&gt; # … with 1 more variable: `gc/sec` &lt;dbl&gt;</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span>(<span class="st">"benchmark"</span>)</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span>(<span class="st">"benchmark"</span>)
+</pre></div>
 </div>
 </div>
 </div>
@@ -205,7 +215,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>

@@ -120,7 +120,7 @@
     <p>The text is converted to UTF-8 encoding before writing.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>write_lines</span>(<span class='no'>text</span>, <span class='no'>path</span>, <span class='kw'>eol</span> <span class='kw'>=</span> <span class='st'>"\n"</span>)</pre>
+    <pre class="usage"><span class='fu'>write_lines</span>(<span class='kw'>text</span>, <span class='kw'>path</span>, eol = <span class='st'>"\n"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -149,14 +149,15 @@ given in <code>eol</code> as the line separator.</p>
 <p>To write a file with windows line endings use <code>write_lines(eol = "\r\n")</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>tf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
+    <pre class="examples"><div class='input'><span class='kw'>tf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
 
-<span class='fu'>write_lines</span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>), <span class='no'>tf</span>)
+<span class='fu'>write_lines</span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='kw'>mtcars</span>), <span class='kw'>tf</span>)
 
 <span class='co'># Write with Windows style line endings</span>
-<span class='fu'>write_lines</span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>), <span class='no'>tf</span>, <span class='kw'>eol</span> <span class='kw'>=</span> <span class='st'>"\r\n"</span>)
+<span class='fu'>write_lines</span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='kw'>mtcars</span>), <span class='kw'>tf</span>, eol = <span class='st'>"\r\n"</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='no'>tf</span>)</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='kw'>tf</span>)
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -172,7 +173,7 @@ given in <code>eol</code> as the line separator.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
 </div>
 
       </footer>
