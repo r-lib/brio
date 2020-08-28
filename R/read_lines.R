@@ -3,7 +3,7 @@
 #' The file is assumed to be UTF-8 and the resulting text has its encoding set
 #' as such.
 #'
-#' Both '\r\n' and '\n' are treated as a newline.
+#' Both '\\r\\n' and '\\n' are treated as a newline.
 #' @param path A character string of the path to the file to read.
 #' @param n integer. The number of lines to read. A negative number means read
 #'  all the lines in the file.
