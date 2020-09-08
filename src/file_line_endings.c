@@ -14,8 +14,8 @@ SEXP brio_file_line_endings(SEXP path) {
     error("Could not open file: %s", path_c);
   }
 
-  char c;
-  char prev_c = '\0';
+  int c;
+  int prev_c = '\0';
   while ((c = fgetc(fp)) != EOF) {
     if (c == '\n') {
       if (prev_c == '\r') {
