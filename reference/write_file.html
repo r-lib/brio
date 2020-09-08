@@ -120,7 +120,7 @@
     <p>This function differs from <code><a href='write_lines.html'>write_lines()</a></code><code>in that it writes the data in</code>text` directly, without any checking or adding any newlines.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>write_file</span>(<span class='no'>text</span>, <span class='no'>path</span>)</pre>
+    <pre class="usage"><span class='fu'>write_file</span>(<span class='kw'>text</span>, <span class='kw'>path</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -140,11 +140,12 @@
     <p>The UTF-8 encoded input text (invisibly).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>tf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
+    <pre class="examples"><div class='input'><span class='kw'>tf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
 
-<span class='fu'>write_file</span>(<span class='st'>"some data\n"</span>, <span class='no'>tf</span>)
+<span class='fu'>write_file</span>(<span class='st'>"some data\n"</span>, <span class='kw'>tf</span>)
 
-<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='no'>tf</span>)</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='kw'>tf</span>)
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -160,7 +161,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>

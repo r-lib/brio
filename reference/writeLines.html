@@ -134,7 +134,7 @@ functionality. Compared to <code><a href='https://rdrr.io/r/base/writeLines.html
 
     </div>
 
-    <pre class="usage"><span class='fu'>writeLines</span>(<span class='no'>text</span>, <span class='no'>con</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"\n"</span>, <span class='no'>useBytes</span>)</pre>
+    <pre class="usage"><span class='fu'>writeLines</span>(<span class='kw'>text</span>, <span class='kw'>con</span>, sep = <span class='st'>"\n"</span>, <span class='kw'>useBytes</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -165,17 +165,20 @@ functionality. Compared to <code><a href='https://rdrr.io/r/base/writeLines.html
     <div class='dont-index'><p><code><a href='readLines.html'>readLines()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>tf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
+    <pre class="examples"><div class='input'><span class='kw'>tf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
 
-<span class='fu'>writeLines</span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>), <span class='no'>tf</span>)
+<span class='fu'>writeLines</span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='kw'>mtcars</span>), <span class='kw'>tf</span>)
 
 <span class='co'># Trying to use connections throws an error</span>
-<span class='no'>con</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/connections.html'>file</a></span>(<span class='no'>tf</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/try.html'>try</a></span>(<span class='fu'>writeLines</span>(<span class='no'>con</span>))</div><div class='output co'>#&gt; Error in writeLines(con) : argument "con" is missing, with no default</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/connections.html'>close</a></span>(<span class='no'>con</span>)
+<span class='kw'>con</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/connections.html'>file</a></span>(<span class='kw'>tf</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/try.html'>try</a></span>(<span class='fu'>writeLines</span>(<span class='kw'>con</span>))
+</div><div class='output co'>#&gt; Error in writeLines(con) : argument "con" is missing, with no default</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/connections.html'>close</a></span>(<span class='kw'>con</span>)
 
 <span class='co'># Trying to use unsupported args throws a warning</span>
-<span class='fu'>writeLines</span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>mtcars</span>), <span class='no'>tf</span>, <span class='kw'>useBytes</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: `useBytes` is ignored by brio::writeLines()</span></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='no'>tf</span>)</div></pre>
+<span class='fu'>writeLines</span>(<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='kw'>mtcars</span>), <span class='kw'>tf</span>, useBytes = <span class='fl'>TRUE</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: `useBytes` is ignored by brio::writeLines()</span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='kw'>tf</span>)
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -191,7 +194,7 @@ functionality. Compared to <code><a href='https://rdrr.io/r/base/writeLines.html
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
 </div>
 
       </footer>
