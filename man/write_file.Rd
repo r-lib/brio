@@ -7,7 +7,7 @@
 write_file(text, path)
 }
 \arguments{
-\item{text}{A character vector of length 1 with data to write}
+\item{text}{A character vector of length 1 with data to write.}
 
 \item{path}{A character string giving the file path to write to.}
 }
@@ -15,7 +15,8 @@ write_file(text, path)
 The UTF-8 encoded input text (invisibly).
 }
 \description{
-This function differs from \code{\link[=write_lines]{write_lines()}}\verb{in that it writes the data in}text` directly, without any checking or adding any newlines.
+This function differs from \code{\link[=write_lines]{write_lines()}} in that it writes the data in
+\code{text} directly, without any checking or adding any newlines.
 }
 \examples{
 tf <- tempfile()
