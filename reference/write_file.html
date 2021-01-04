@@ -40,7 +40,8 @@
 
 
 <meta property="og:title" content="Write data to a file — write_file" />
-<meta property="og:description" content="This function differs from write_lines()in that it writes the data intext` directly, without any checking or adding any newlines." />
+<meta property="og:description" content="This function differs from write_lines() in that it writes the data in
+text directly, without any checking or adding any newlines." />
 
 
 
@@ -80,7 +81,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,7 +95,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/r-lib/brio/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -117,17 +118,18 @@
     </div>
 
     <div class="ref-description">
-    <p>This function differs from <code><a href='write_lines.html'>write_lines()</a></code><code>in that it writes the data in</code>text` directly, without any checking or adding any newlines.</p>
+    <p>This function differs from <code><a href='write_lines.html'>write_lines()</a></code> in that it writes the data in
+<code>text</code> directly, without any checking or adding any newlines.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>write_file</span>(<span class='kw'>text</span>, <span class='kw'>path</span>)</pre>
+    <pre class="usage"><span class='fu'>write_file</span><span class='op'>(</span><span class='va'>text</span>, <span class='va'>path</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>text</th>
-      <td><p>A character vector of length 1 with data to write</p></td>
+      <td><p>A character vector of length 1 with data to write.</p></td>
     </tr>
     <tr>
       <th>path</th>
@@ -140,11 +142,11 @@
     <p>The UTF-8 encoded input text (invisibly).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>tf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>()
+    <pre class="examples"><div class='input'><span class='va'>tf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='fu'>write_file</span>(<span class='st'>"some data\n"</span>, <span class='kw'>tf</span>)
+<span class='fu'>write_file</span><span class='op'>(</span><span class='st'>"some data\n"</span>, <span class='va'>tf</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span>(<span class='kw'>tf</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span><span class='op'>(</span><span class='va'>tf</span><span class='op'>)</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -161,7 +163,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
