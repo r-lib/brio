@@ -1,5 +1,7 @@
 # brio (development version)
 
+* `file_line_endings()` now works as expected on ARM systems (#8)
+
 # brio 1.1.0
 
 * New `write_file()` function to write an entire file (#7)
