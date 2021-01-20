@@ -1,4 +1,4 @@
-# brio (development version)
+# brio 1.1.1
 
 * `file_line_endings()` now works as expected on ARM systems (#8)
 
