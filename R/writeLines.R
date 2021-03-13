@@ -27,7 +27,7 @@
 #' writeLines(rownames(mtcars), tf, useBytes = TRUE)
 #'
 #' unlink(tf)
-writeLines <- function(text, con, sep = "\n", useBytes) {
+writeLines <- function(text, con = stdout(), sep = "\n", useBytes) {
   if (!is.character(con)) {
     stop("Only file paths are supported by brio::writeLines()", call. = FALSE)
   }
