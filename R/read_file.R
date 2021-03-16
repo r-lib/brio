@@ -16,5 +16,5 @@
 #' identical(data, rawToChar(data_raw))
 read_file <- function(path) {
   path <- normalizePath(path, mustWork = TRUE)
-  .Call(brio_read_file, path)
+  .Call(brio_read_file, enc2utf8(path))
 }
