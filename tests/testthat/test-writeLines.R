@@ -4,7 +4,7 @@ test_that("writeLines works", {
 
   # Errors with connections
   con <- file(tmp)
-  expect_error(writeLines("foo\nbar\n", con), "Only file paths are supported")
+  expect_warning(writeLines("foo\nbar\n", con), "Falling back to base::writeLines()")
   close(con)
 
   # Warns if you use useBytes
