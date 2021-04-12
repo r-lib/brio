@@ -19,6 +19,7 @@ SEXP brio_read_file_raw(SEXP path) {
   rewind(fp);
 
   if (file_size == 0) {
+    fclose(fp);
     return allocVector(RAWSXP, 0);
   }
 
@@ -28,8 +29,11 @@ SEXP brio_read_file_raw(SEXP path) {
   read_buf[file_size] = '\0';
 
   if ((fread(read_buf, 1, file_size, fp)) <= 0) {
+    fclose(fp);
     error("Error reading file: %s", path_c);
   };
+
+  fclose(fp);
 
   SEXP ans;
   PROTECT(ans = allocVector(RAWSXP, file_size));
