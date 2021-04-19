@@ -18,6 +18,11 @@ write UTF-8 files and provide more explicit control over line endings.
 
 ``` r
 library(brio)
+#> 
+#> Attaching package: 'brio'
+#> The following objects are masked from 'package:base':
+#> 
+#>     readLines, writeLines
 write_lines(c("abc", "123"), "my-file")
 
 # Write with windows newlines
@@ -79,12 +84,11 @@ bench::mark(
   base::readLines("benchmark")
 )
 #> # A tibble: 3 x 6
-#>   expression                          min   median `itr/sec` mem_alloc
-#>   <bch:expr>                     <bch:tm> <bch:tm>     <dbl> <bch:byt>
-#> 1 brio::read_lines("benchmark")  661.33µs 696.57µs     1357.    8.05KB
-#> 2 readr::read_lines("benchmark")   1.49ms   1.56ms      623.   10.35KB
-#> 3 base::readLines("benchmark")     3.54ms   3.83ms      249.   31.39KB
-#> # … with 1 more variable: `gc/sec` <dbl>
+#>   expression                          min   median `itr/sec` mem_alloc `gc/sec`
+#>   <bch:expr>                     <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
+#> 1 brio::read_lines("benchmark")  686.09µs 715.66µs     1333.    8.05KB        0
+#> 2 readr::read_lines("benchmark")   2.56ms   2.68ms      363.    9.07MB        0
+#> 3 base::readLines("benchmark")     3.61ms   3.77ms      256.   31.39KB        0
 ```
 
 ### Writing
@@ -100,12 +104,12 @@ bench::mark(
   check = FALSE
 )
 #> # A tibble: 3 x 6
-#>   expression                                 min median `itr/sec` mem_alloc
-#>   <bch:expr>                            <bch:tm> <bch:>     <dbl> <bch:byt>
-#> 1 brio::write_lines(data, "benchmark")  891.35µs 1.15ms      852.        0B
-#> 2 readr::write_lines(data, "benchmark") 924.96µs 1.17ms      811.    2.49KB
-#> 3 base::writeLines(data, "benchmark")     1.09ms 1.35ms      756.        0B
-#> # … with 1 more variable: `gc/sec` <dbl>
+#>   expression                                 min   median `itr/sec` mem_alloc
+#>   <bch:expr>                            <bch:tm> <bch:tm>     <dbl> <bch:byt>
+#> 1 brio::write_lines(data, "benchmark")   812.1µs   1.18ms     835.         0B
+#> 2 readr::write_lines(data, "benchmark")   15.1ms  17.82ms      55.4     589KB
+#> 3 base::writeLines(data, "benchmark")    846.5µs    1.4ms     669.         0B
+#> # … with 1 more variable: gc/sec <dbl>
 
 unlink("benchmark")
 ```
