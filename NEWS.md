@@ -1,5 +1,7 @@
 # brio (development version)
 
+* Input filenames are now automatically converted to UTF-8 from the native encoding (@gaborcsardi, #15)
+
 * `read_file_raw()` now closes file handles (@pbarber, #16)
 
 # brio 1.1.1
