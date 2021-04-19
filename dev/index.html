@@ -22,8 +22,6 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -36,12 +34,18 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">brio</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.0.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.1.1.9000</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li>
+  <a href="index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -78,11 +82,11 @@
 <h2 class="hasAnchor">
 <a href="#reading-files" class="anchor"></a>Reading files</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-lib/brio" class="external-link">brio</a></span><span class="op">)</span>
-<span class="fu"><a href="reference/write_lines.html">write_lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"abc"</span>, <span class="st">"123"</span><span class="op">)</span>, <span class="st">"my-file"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-lib/brio">brio</a></span><span class="op">)</span>
+<span class="fu"><a href="reference/write_lines.html">write_lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"abc"</span>, <span class="st">"123"</span><span class="op">)</span>, <span class="st">"my-file"</span><span class="op">)</span>
 
 <span class="co"># Write with windows newlines</span>
-<span class="fu"><a href="reference/write_lines.html">write_lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"abc"</span>, <span class="st">"123"</span><span class="op">)</span>, <span class="st">"my-file-2"</span>, eol <span class="op">=</span> <span class="st">"\r\n"</span><span class="op">)</span>
+<span class="fu"><a href="reference/write_lines.html">write_lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"abc"</span>, <span class="st">"123"</span><span class="op">)</span>, <span class="st">"my-file-2"</span>, eol <span class="op">=</span> <span class="st">"\r\n"</span><span class="op">)</span>
 
 <span class="fu"><a href="reference/file_line_endings.html">file_line_endings</a></span><span class="op">(</span><span class="st">"my-file"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "\n"</span>
@@ -93,12 +97,12 @@
 <span class="fu"><a href="reference/read_lines.html">read_lines</a></span><span class="op">(</span><span class="st">"my-file"</span><span class="op">)</span>
 <span class="co">#&gt; [1] "abc" "123"</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"my-file"</span>, <span class="st">"my-file-2"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"my-file"</span>, <span class="st">"my-file-2"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="drop-ins" class="section level2">
 <h2 class="hasAnchor">
 <a href="#drop-ins" class="anchor"></a>Drop-ins</h2>
-<p>brio also has <code><a href="reference/readLines.html">readLines()</a></code> and <code><a href="reference/writeLines.html">writeLines()</a></code> functions drop-in replacements for <code><a href="https://rdrr.io/r/base/readLines.html" class="external-link">base::readLines()</a></code> and <code><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">base::writeLines()</a></code>. These functions are thin wrappers around <code><a href="reference/read_lines.html">brio::read_lines()</a></code> and <code><a href="reference/write_lines.html">brio::write_lines()</a></code>, with deliberately fewer features than the base equivalents. If you want to convert a package to using brio you can add the following line and re-document.</p>
+<p>brio also has <code><a href="reference/readLines.html">readLines()</a></code> and <code><a href="reference/writeLines.html">writeLines()</a></code> functions drop-in replacements for <code><a href="https://rdrr.io/r/base/readLines.html">base::readLines()</a></code> and <code><a href="https://rdrr.io/r/base/writeLines.html">base::writeLines()</a></code>. These functions are thin wrappers around <code><a href="reference/read_lines.html">brio::read_lines()</a></code> and <code><a href="reference/write_lines.html">brio::write_lines()</a></code>, with deliberately fewer features than the base equivalents. If you want to convert a package to using brio you can add the following line and re-document.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">#' @importFrom brio readLines writeLines</span></code></pre></div>
 </div>
@@ -108,11 +112,11 @@
 <p>Speed is not necessarily a goal of brio, but it does end up being a nice side effect.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">gen_random</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">characters</span>, <span class="va">num_lines</span>, <span class="va">min</span>, <span class="va">max</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">line_lengths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="va">max</span> <span class="op">-</span> <span class="va">min</span>, <span class="va">num_lines</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span> <span class="va">min</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">line_lengths</span>, <span class="kw">function</span><span class="op">(</span><span class="va">len</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">characters</span>, <span class="va">len</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">line_lengths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample.int</a></span><span class="op">(</span><span class="va">max</span> <span class="op">-</span> <span class="va">min</span>, <span class="va">num_lines</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span> <span class="va">min</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">line_lengths</span>, <span class="kw">function</span><span class="op">(</span><span class="va">len</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">characters</span>, <span class="va">len</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 <span class="op">}</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
 
 <span class="co"># generate 1000 random lines between 100-1000 characters long</span>
 <span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">gen_random</span><span class="op">(</span><span class="va">letters</span>, <span class="fl">1000</span>, min <span class="op">=</span> <span class="fl">100</span>, max <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>
@@ -126,7 +130,7 @@
 <code class="sourceCode R"><span class="fu">bench</span><span class="fu">::</span><span class="fu">mark</span><span class="op">(</span>
   <span class="fu">brio</span><span class="fu">::</span><span class="fu"><a href="reference/read_lines.html">read_lines</a></span><span class="op">(</span><span class="st">"benchmark"</span><span class="op">)</span>,
   <span class="fu">readr</span><span class="fu">::</span><span class="fu">read_lines</span><span class="op">(</span><span class="st">"benchmark"</span><span class="op">)</span>,
-  <span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="st">"benchmark"</span><span class="op">)</span>
+  <span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"benchmark"</span><span class="op">)</span>
 <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 3 x 6</span>
 <span class="co">#&gt;   expression                          min   median `itr/sec` mem_alloc</span>
@@ -144,7 +148,7 @@
 <code class="sourceCode R"><span class="fu">bench</span><span class="fu">::</span><span class="fu">mark</span><span class="op">(</span>
   <span class="fu">brio</span><span class="fu">::</span><span class="fu"><a href="reference/write_lines.html">write_lines</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"benchmark"</span><span class="op">)</span>,
   <span class="fu">readr</span><span class="fu">::</span><span class="fu">write_lines</span><span class="op">(</span><span class="va">data</span>, <span class="st">"benchmark"</span><span class="op">)</span>,
-  <span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"benchmark"</span><span class="op">)</span>,
+  <span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"benchmark"</span><span class="op">)</span>,
   check <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 3 x 6</span>
@@ -155,7 +159,7 @@
 <span class="co">#&gt; 3 base::writeLines(data, "benchmark")     1.09ms 1.35ms      756.        0B</span>
 <span class="co">#&gt; # … with 1 more variable: `gc/sec` &lt;dbl&gt;</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="st">"benchmark"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="st">"benchmark"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -163,7 +167,7 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2 data-toc-skip>Links</h2>
+<h2>Links</h2>
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=brio">https://​cloud.r-project.org/​package=brio</a>
 </li>
@@ -173,18 +177,15 @@
 </li>
 </ul>
 </div>
-
 <div class="license">
-<h2 data-toc-skip>License</h2>
+<h2>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
 <li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
-
-
 <div class="developers">
-<h2 data-toc-skip>Developers</h2>
+<h2>Developers</h2>
 <ul class="list-unstyled">
 <li>
 <a href="http://jimhester.com">Jim Hester</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-2739-7082" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
@@ -193,26 +194,23 @@
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
+  <div class="dev-status">
+<h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://codecov.io/gh/r-lib/brio?branch=master" class="external-link"><img src="https://codecov.io/gh/r-lib/brio/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
-<li><a href="https://github.com/r-lib/brio/actions" class="external-link"><img src="https://github.com/r-lib/brio/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://codecov.io/gh/r-lib/brio?branch=master"><img src="https://codecov.io/gh/r-lib/brio/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://github.com/r-lib/brio/actions"><img src="https://github.com/r-lib/brio/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 </ul>
 </div>
-
-  </div>
+</div>
 </div>
 
 
       <footer><div class="copyright">
-  <p></p>
-<p>Developed by <a href="http://jimhester.com" class="external-link">Jim Hester</a>, <a href="https://www.rstudio.com" class="external-link"><img src="https://www.tidyverse.org/rstudio-logo.svg" alt="RStudio" height="24"></a>.</p>
+  <p>Developed by <a href="http://jimhester.com">Jim Hester</a>, <a href="https://www.rstudio.com"><img src="https://www.tidyverse.org/rstudio-logo.svg" alt="RStudio" height="24"></a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
@@ -220,8 +218,6 @@
 
   
 
-
-  
 
   </body>
 </html>
