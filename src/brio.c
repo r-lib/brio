@@ -1,4 +1,3 @@
-#include <Rinternals.h>
 #include <stdio.h>
 
 #ifdef _WIN32
@@ -9,7 +8,7 @@
 FILE* open_with_widechar_on_windows(SEXP path, const char* mode) {
   FILE* out;
 #ifdef _WIN32
-  const char path_c = Rf_translateCharUTF8(path);
+  const char* path_c = Rf_translateCharUTF8(path);
   // First convert the mode to the wide equivalent
   // Only usage is 2 characters so max 8 bytes + 2 byte null.
   wchar_t mode_w[10];
