@@ -18,5 +18,5 @@
 #' unlink(c(tf1, tf2))
 file_line_endings <- function(path) {
   path <- normalizePath(path, mustWork = TRUE)
-  .Call(brio_file_line_endings, enc2utf8(path))
+  .Call(brio_file_line_endings, path)
 }

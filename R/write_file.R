@@ -27,5 +27,5 @@ write_file <- function(text, path) {
   text <- enc2utf8(text)
   path <- normalizePath(path, mustWork = FALSE)
 
-  invisible(.Call(brio_write_file, text, enc2utf8(path)))
+  invisible(.Call(brio_write_file, text, path))
 }

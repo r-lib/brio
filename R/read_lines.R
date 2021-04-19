@@ -15,5 +15,5 @@
 read_lines <- function(path, n = -1) {
   path <- normalizePath(path, mustWork = TRUE)
   n <- as.integer(n)
-  .Call(brio_read_lines, enc2utf8(path), n)
+  .Call(brio_read_lines, path, n)
 }

@@ -29,5 +29,5 @@ write_lines <- function(text, path, eol = "\n") {
   text <- enc2utf8(text)
   path <- normalizePath(path, mustWork = FALSE)
 
-  invisible(.Call(brio_write_lines, text, enc2utf8(path), eol))
+  invisible(.Call(brio_write_lines, text, path, eol))
 }

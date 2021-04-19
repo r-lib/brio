@@ -8,10 +8,8 @@
 SEXP brio_write_lines(SEXP text, SEXP path, SEXP eol) {
   FILE* fp;
 
-  const char* path_c = CHAR(STRING_ELT(path, 0));
-
-  if ((fp = open_with_widechar_on_windows(path_c, "wb")) == NULL) {
-    error("Could not open file: %s", path_c);
+  if ((fp = open_with_widechar_on_windows(STRING_ELT(path, 0), "wb")) == NULL) {
+    error("Could not open file: %s", Rf_translateChar(STRING_ELT(path, 0)));
   }
 
   SEXP eol_e = STRING_ELT(eol, 0);

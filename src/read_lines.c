@@ -41,12 +41,10 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
     return allocVector(STRSXP, 0);
   }
 
-  const char* path_c = CHAR(STRING_ELT(path, 0));
-
   FILE* fp;
 
-  if ((fp = open_with_widechar_on_windows(path_c, "rb")) == NULL) {
-    error("Could not open file: %s", path_c);
+  if ((fp = open_with_widechar_on_windows(STRING_ELT(path, 0), "rb")) == NULL) {
+    error("Could not open file: %s", Rf_translateChar(STRING_ELT(path, 0)));
   }
 
   SEXP out;

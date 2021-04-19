@@ -1,5 +1,5 @@
 #pragma once
 
-#include <stdio.h>
+#include <Rinternals.h>
 
-FILE* open_with_widechar_on_windows(const char* txt, const char* mode);
+FILE* open_with_widechar_on_windows(SEXP path, const char* mode);
