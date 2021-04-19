@@ -29,7 +29,7 @@ SEXP brio_read_file_raw(SEXP path) {
   if ((fread(read_buf, 1, file_size, fp)) <= 0) {
     fclose(fp);
     error("Error reading file: %s", Rf_translateChar(STRING_ELT(path, 0)));
-  };
+  }
 
   fclose(fp);
 
