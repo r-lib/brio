@@ -1,5 +1,7 @@
 # brio (development version)
 
+* `read_file_raw()` now closes file handles (@pbarber, #16)
+
 # brio 1.1.1
 
 * `file_line_endings()` now works as expected on ARM systems (#8)
