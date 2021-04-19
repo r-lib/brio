@@ -26,7 +26,7 @@ SEXP brio_read_file(SEXP path) {
   read_buf = (char*)malloc(file_size + 1);
   read_buf[file_size] = '\0';
 
-  if ((fread(read_buf, 1, file_size, fp)) <= 0) {
+  if ((fread(read_buf, 1, file_size, fp)) != file_size) {
     fclose(fp);
     error("Error reading file: %s", Rf_translateChar(STRING_ELT(path, 0)));
   }
