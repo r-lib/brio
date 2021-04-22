@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">brio</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -82,6 +82,11 @@
 <a href="#reading-files" class="anchor"></a>Reading files</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-lib/brio">brio</a></span><span class="op">)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'brio'</span>
+<span class="co">#&gt; The following objects are masked from 'package:base':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     readLines, writeLines</span>
 <span class="fu"><a href="reference/write_lines.html">write_lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"abc"</span>, <span class="st">"123"</span><span class="op">)</span>, <span class="st">"my-file"</span><span class="op">)</span>
 
 <span class="co"># Write with windows newlines</span>
@@ -132,12 +137,11 @@
   <span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html">readLines</a></span><span class="op">(</span><span class="st">"benchmark"</span><span class="op">)</span>
 <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 3 x 6</span>
-<span class="co">#&gt;   expression                          min   median `itr/sec` mem_alloc</span>
-<span class="co">#&gt;   &lt;bch:expr&gt;                     &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;</span>
-<span class="co">#&gt; 1 brio::read_lines("benchmark")  661.33µs 696.57µs     1357.    8.05KB</span>
-<span class="co">#&gt; 2 readr::read_lines("benchmark")   1.49ms   1.56ms      623.   10.35KB</span>
-<span class="co">#&gt; 3 base::readLines("benchmark")     3.54ms   3.83ms      249.   31.39KB</span>
-<span class="co">#&gt; # … with 1 more variable: `gc/sec` &lt;dbl&gt;</span></code></pre></div>
+<span class="co">#&gt;   expression                          min   median `itr/sec` mem_alloc `gc/sec`</span>
+<span class="co">#&gt;   &lt;bch:expr&gt;                     &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 brio::read_lines("benchmark")  686.09µs 715.66µs     1333.    8.05KB        0</span>
+<span class="co">#&gt; 2 readr::read_lines("benchmark")   2.56ms   2.68ms      363.    9.07MB        0</span>
+<span class="co">#&gt; 3 base::readLines("benchmark")     3.61ms   3.77ms      256.   31.39KB        0</span></code></pre></div>
 </div>
 <div id="writing" class="section level3">
 <h3 class="hasAnchor">
@@ -151,12 +155,12 @@
   check <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span>
 <span class="co">#&gt; # A tibble: 3 x 6</span>
-<span class="co">#&gt;   expression                                 min median `itr/sec` mem_alloc</span>
-<span class="co">#&gt;   &lt;bch:expr&gt;                            &lt;bch:tm&gt; &lt;bch:&gt;     &lt;dbl&gt; &lt;bch:byt&gt;</span>
-<span class="co">#&gt; 1 brio::write_lines(data, "benchmark")  891.35µs 1.15ms      852.        0B</span>
-<span class="co">#&gt; 2 readr::write_lines(data, "benchmark") 924.96µs 1.17ms      811.    2.49KB</span>
-<span class="co">#&gt; 3 base::writeLines(data, "benchmark")     1.09ms 1.35ms      756.        0B</span>
-<span class="co">#&gt; # … with 1 more variable: `gc/sec` &lt;dbl&gt;</span>
+<span class="co">#&gt;   expression                                 min   median `itr/sec` mem_alloc</span>
+<span class="co">#&gt;   &lt;bch:expr&gt;                            &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;</span>
+<span class="co">#&gt; 1 brio::write_lines(data, "benchmark")   812.1µs   1.18ms     835.         0B</span>
+<span class="co">#&gt; 2 readr::write_lines(data, "benchmark")   15.1ms  17.82ms      55.4     589KB</span>
+<span class="co">#&gt; 3 base::writeLines(data, "benchmark")    846.5µs    1.4ms     669.         0B</span>
+<span class="co">#&gt; # … with 1 more variable: gc/sec &lt;dbl&gt;</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="st">"benchmark"</span><span class="op">)</span></code></pre></div>
 </div>
