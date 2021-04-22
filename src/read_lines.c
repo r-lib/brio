@@ -62,6 +62,11 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
   line.data = (char*)malloc(line.limit);
   line.size = 0;
 
+  if (!line.data) {
+    fclose(fp);
+    error("Allocation of size %i failed", line.limit);
+  }
+
   size_t read_size = 0;
   while ((read_size = fread(read_buf, 1, READ_BUF_SIZE - 1, fp)) > 0) {
     if (read_size != READ_BUF_SIZE - 1 && ferror(fp)) {
@@ -71,7 +76,7 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
     read_buf[read_size] = '\0';
     // Find the newlines
     const char* prev_newline = read_buf;
-    const char* next_newline = read_buf;
+    const char* next_newline;
 
     while ((next_newline = strchr(prev_newline, '\n')) != NULL) {
       size_t len = next_newline - prev_newline;
