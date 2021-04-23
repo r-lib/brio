@@ -101,6 +101,7 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
       UNPROTECT(1);
 
       if (n_c > 0 && out_num >= n_c) {
+        free(line.data);
         fclose(fp);
         UNPROTECT(1);
         return out;
@@ -126,6 +127,7 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
   }
 
   fclose(fp);
+  free(line.data);
 
   UNPROTECT(1);
   return out;
