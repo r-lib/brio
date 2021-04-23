@@ -11,3 +11,4 @@
 ^CRAN-RELEASE$
 ^revdep$
 ^Makefile$
+^infer-out$
