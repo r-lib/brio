@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • brio</title>
+<title>Write data to a file — write_file_raw • brio</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Write data to a file — write_file_raw" />
+<meta property="og:description" content="This function differs from write_lines() in that it writes the data in
+text directly, without any checking or adding any newlines." />
 
 
 <meta name="robots" content="noindex">
@@ -58,7 +60,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -108,84 +110,42 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Write data to a file</h1>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/brio/blob/master/R/write_file_raw.R'><code>R/write_file_raw.R</code></a></small>
+    <div class="hidden name"><code>write_file_raw.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>This function differs from <code><a href='write_lines.html'>write_lines()</a></code> in that it writes the data in
+<code>text</code> directly, without any checking or adding any newlines.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>write_file_raw</span><span class='op'>(</span><span class='va'>raw</span>, <span class='va'>path</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="file_line_endings.html">file_line_endings()</a></code> </p>
-        </td>
-        <td><p>Retrieve the type of line endings used by a file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="readLines.html">readLines()</a></code> </p>
-        </td>
-        <td><p>Read text lines from a file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_file.html">read_file()</a></code> <code><a href="read_file.html">read_file_raw()</a></code> </p>
-        </td>
-        <td><p>Read an entire file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_lines.html">read_lines()</a></code> </p>
-        </td>
-        <td><p>Read text lines from a file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="writeLines.html">writeLines()</a></code> </p>
-        </td>
-        <td><p>Write lines to a file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="write_file.html">write_file()</a></code> </p>
-        </td>
-        <td><p>Write data to a file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="write_file_raw.html">write_file_raw()</a></code> </p>
-        </td>
-        <td><p>Write data to a file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="write_lines.html">write_lines()</a></code> </p>
-        </td>
-        <td><p>Write lines to a file</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>raw</th>
+      <td><p>A raw vector with data to write.</p></td>
+    </tr>
+    <tr>
+      <th>path</th>
+      <td><p>A character string giving the file path to write to.</p></td>
+    </tr>
     </table>
-  </div>
 
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>tf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='fu'>write_file_raw</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/raw.html'>as.raw</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0x66</span>, <span class='fl'>0x6f</span>, <span class='fl'>0x6f</span>, <span class='fl'>0x0</span>, <span class='fl'>0x62</span>, <span class='fl'>0x61</span>, <span class='fl'>0x72</span><span class='op'>)</span><span class='op'>)</span>, <span class='va'>tf</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span><span class='op'>(</span><span class='va'>tf</span><span class='op'>)</span>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
