@@ -1,5 +1,7 @@
 # brio (development version)
 
+* New `write_file_raw()` function to write a raw vector to a file.
+
 # brio 1.1.2
 
 * Input filenames are now automatically converted to UTF-8 from the native encoding (@gaborcsardi, #15)
