@@ -13,7 +13,7 @@
     R_xlen_t i = I;                                                            \
     while (i >= len) {                                                         \
       len *= 2;                                                                \
-      REPROTECT(X = Rf_lengthgets(X, len), P_IDX);                             \
+      REPROTECT(X = Rf_xlengthgets(X, len), P_IDX);                             \
     }                                                                          \
     SET_STRING_ELT(X, i, VAL);                                                 \
   }
