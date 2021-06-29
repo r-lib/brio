@@ -19,5 +19,5 @@ RoxygenNote: 7.1.1
 Suggests:
     testthat (>= 2.1.0),
     covr
-URL: https://github.com/r-lib/brio
+URL: https://brio.r-lib.org, https://github.com/r-lib/brio
 BugReports: https://github.com/r-lib/brio/issues
