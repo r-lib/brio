@@ -71,7 +71,6 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
   while ((read_size = fread(read_buf, 1, READ_BUF_SIZE - 1, fp)) > 0) {
     if (read_size != READ_BUF_SIZE - 1 && ferror(fp)) {
       free(line.data);
-      UNPROTECT(1); // out
       error(
           "Error reading from file: %s", Rf_translateChar(STRING_ELT(path, 0)));
     }
