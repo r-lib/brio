@@ -1,0 +1,92 @@
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'src/**'
+      - 'inst/include/**'
+      - 'tests/testthat/**'
+      - 'vignettes/**'
+  pull_request:
+    branches:
+      - main
+      - master
+    paths:
+      - 'src/**'
+      - 'inst/include/**'
+      - 'tests/testthat/**'
+      - 'vignettes/**'
+
+name: mem-check
+
+jobs:
+  mem-check:
+    runs-on: ubuntu-20.04
+
+    name: valgrind ${{ matrix.config.test }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {test: 'tests'}
+          - {test: 'examples'}
+          - {test: 'vignettes'}
+
+    env:
+      R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
+      _R_CHECK_FORCE_SUGGESTS_: false
+      RSPM: https://packagemanager.rstudio.com/cran/__linux__/focal/latest
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@v1
+        with:
+          r-version: release # CRAN uses devel, but takes ages to load deps.
+
+      - uses: r-lib/actions/setup-pandoc@master
+
+      - name: Query dependencies
+        run: |
+          install.packages('remotes')
+          saveRDS(remotes::dev_package_deps(dependencies = c('soft', 'Config/Needs/memcheck')), ".github/depends.Rds", version = 2)
+          writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
+        shell: Rscript {0}
+
+      - name: Cache R packages
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
+          restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get install valgrind texlive-latex-base
+          while read -r cmd
+          do
+            eval sudo $cmd
+          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
+
+      - name: Install dependencies
+        run: |
+          remotes::install_deps(dependencies = c('soft', 'Config/Needs/memcheck'))
+        shell: Rscript {0}
+
+      - name: Install package
+        run: |
+          cd ..
+          R CMD build --no-manual --no-resave-data brio
+          R CMD INSTALL brio*.tar.gz
+          cd brio
+
+      - name: valgrind - memcheck ${{ matrix.config.test }}
+        run: |
+          R -d "valgrind --tool=memcheck \
+          --leak-check=full \
+          --errors-for-leak-kinds=definite \
+          --error-exitcode=1" \
+          --vanilla < memcheck/${{ matrix.config.test }}.R
