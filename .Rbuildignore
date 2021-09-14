@@ -9,6 +9,7 @@
 ^README\.Rmd$
 ^cran-comments\.md$
 ^CRAN-RELEASE$
+^memcheck$
 ^revdep$
 ^Makefile$
 ^infer-out$
