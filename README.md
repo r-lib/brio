@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![Codecov test
-coverage](https://codecov.io/gh/r-lib/brio/branch/master/graph/badge.svg)](https://codecov.io/gh/r-lib/brio?branch=master)
+coverage](https://codecov.io/gh/r-lib/brio/branch/master/graph/badge.svg)](https://app.codecov.io/gh/r-lib/brio?branch=master)
 [![R build
 status](https://github.com/r-lib/brio/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/brio/actions)
 <!-- badges: end -->
@@ -83,12 +83,12 @@ bench::mark(
   readr::read_lines("benchmark"),
   base::readLines("benchmark")
 )
-#> # A tibble: 3 x 6
+#> # A tibble: 3 × 6
 #>   expression                          min   median `itr/sec` mem_alloc `gc/sec`
 #>   <bch:expr>                     <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
-#> 1 brio::read_lines("benchmark")  686.09µs 715.66µs     1333.    8.05KB        0
-#> 2 readr::read_lines("benchmark")   2.56ms   2.68ms      363.    9.07MB        0
-#> 3 base::readLines("benchmark")     3.61ms   3.77ms      256.   31.39KB        0
+#> 1 brio::read_lines("benchmark")  676.56µs 694.67µs     1382.    8.05KB     0   
+#> 2 readr::read_lines("benchmark")   3.87ms   4.19ms      235.     7.2MB     8.70
+#> 3 base::readLines("benchmark")     3.68ms   3.92ms      250.   31.39KB     0
 ```
 
 ### Writing
@@ -103,12 +103,12 @@ bench::mark(
   base::writeLines(data, "benchmark"),
   check = FALSE
 )
-#> # A tibble: 3 x 6
+#> # A tibble: 3 × 6
 #>   expression                                 min   median `itr/sec` mem_alloc
 #>   <bch:expr>                            <bch:tm> <bch:tm>     <dbl> <bch:byt>
-#> 1 brio::write_lines(data, "benchmark")   812.1µs   1.18ms     835.         0B
-#> 2 readr::write_lines(data, "benchmark")   15.1ms  17.82ms      55.4     589KB
-#> 3 base::writeLines(data, "benchmark")    846.5µs    1.4ms     669.         0B
+#> 1 brio::write_lines(data, "benchmark")   833.8µs    1.3ms     751.         0B
+#> 2 readr::write_lines(data, "benchmark")  11.86ms     13ms      76.5     195KB
+#> 3 base::writeLines(data, "benchmark")     1.07ms   1.52ms     636.         0B
 #> # … with 1 more variable: gc/sec <dbl>
 
 unlink("benchmark")
