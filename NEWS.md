@@ -1,5 +1,7 @@
 # brio (development version)
 
+* Gábor Csárdi is now the maintainer.
+
 * New `write_file_raw()` function to write a raw vector to a file.
 
 * Fix memory leak in `read_lines()` (@ms609, #20)
