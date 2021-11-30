@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • brio</title>
+<title>Write data to a file — write_file_raw • brio</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,9 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Write data to a file — write_file_raw" />
+<meta property="og:description" content="This function differs from write_lines() in that it writes the data in
+text directly, without any checking or adding any newlines." />
 
 
 
@@ -58,7 +60,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -110,64 +112,45 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/r-lib/brio/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Write data to a file</h1>
+    <small class="dont-index">Source: <a href='https://github.com/r-lib/brio/blob/master/R/write_file_raw.R'><code>R/write_file_raw.R</code></a></small>
+    <div class="hidden name"><code>write_file_raw.Rd</code></div>
     </div>
 
-    <div id="brio-113" class="section level1">
-<h1 class="page-header" data-toc-text="1.1.3">
-<a href="#brio-113" class="anchor"></a>brio 1.1.3<small> 2021-11-30 </small>
-</h1>
-<ul>
-<li><p>Gábor Csárdi is now the maintainer.</p></li>
-<li><p>New <code><a href="../reference/write_file_raw.html">write_file_raw()</a></code> function to write a raw vector to a file.</p></li>
-<li><p>Fix memory leak in <code><a href="../reference/read_lines.html">read_lines()</a></code> (<a href='https://github.com/ms609'>@ms609</a>, <a href='https://github.com/r-lib/brio/issues/20'>#20</a>)</p></li>
-</ul>
-</div>
-    <div id="brio-112" class="section level1">
-<h1 class="page-header" data-toc-text="1.1.2">
-<a href="#brio-112" class="anchor"></a>brio 1.1.2<small> 2021-04-23 </small>
-</h1>
-<ul>
-<li><p>Input filenames are now automatically converted to UTF-8 from the native encoding (<a href='https://github.com/gaborcsardi'>@gaborcsardi</a>, <a href='https://github.com/r-lib/brio/issues/15'>#15</a>)</p></li>
-<li><p><code><a href="../reference/read_file.html">read_file_raw()</a></code> now closes file handles (<a href='https://github.com/pbarber'>@pbarber</a>, <a href='https://github.com/r-lib/brio/issues/16'>#16</a>)</p></li>
-</ul>
-</div>
-    <div id="brio-111" class="section level1">
-<h1 class="page-header" data-toc-text="1.1.1">
-<a href="#brio-111" class="anchor"></a>brio 1.1.1<small> 2021-01-20 </small>
-</h1>
-<ul>
-<li>
-<code><a href="../reference/file_line_endings.html">file_line_endings()</a></code> now works as expected on ARM systems (<a href='https://github.com/r-lib/brio/issues/8'>#8</a>)</li>
-</ul>
-</div>
-    <div id="brio-110" class="section level1">
-<h1 class="page-header" data-toc-text="1.1.0">
-<a href="#brio-110" class="anchor"></a>brio 1.1.0<small> 2020-08-31 </small>
-</h1>
-<ul>
-<li><p>New <code><a href="../reference/write_file.html">write_file()</a></code> function to write an entire file (<a href='https://github.com/r-lib/brio/issues/7'>#7</a>)</p></li>
-<li><p><code><a href="../reference/read_lines.html">read_lines()</a></code> no longer leaks file handles.</p></li>
-<li><p>Added a <code>NEWS.md</code> file to track changes to the package.</p></li>
-</ul>
-</div>
-    <div id="brio-100" class="section level1">
-<h1 class="page-header" data-toc-text="1.0.0">
-<a href="#brio-100" class="anchor"></a>brio 1.0.0<small> 2020-03-26 </small>
-</h1>
-<ul>
-<li>Initial release</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>This function differs from <code><a href='write_lines.html'>write_lines()</a></code> in that it writes the data in
+<code>text</code> directly, without any checking or adding any newlines.</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>write_file_raw</span><span class='op'>(</span><span class='va'>raw</span>, <span class='va'>path</span><span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>raw</th>
+      <td><p>A raw vector with data to write.</p></td>
+    </tr>
+    <tr>
+      <th>path</th>
+      <td><p>A character string giving the file path to write to.</p></td>
+    </tr>
+    </table>
+
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='r-in'><span class='va'>tf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>write_file_raw</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/raw.html'>as.raw</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0x66</span>, <span class='fl'>0x6f</span>, <span class='fl'>0x6f</span>, <span class='fl'>0x0</span>, <span class='fl'>0x62</span>, <span class='fl'>0x61</span>, <span class='fl'>0x72</span><span class='op'>)</span><span class='op'>)</span>, <span class='va'>tf</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/unlink.html'>unlink</a></span><span class='op'>(</span><span class='va'>tf</span><span class='op'>)</span></span>
+</pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
 
 
