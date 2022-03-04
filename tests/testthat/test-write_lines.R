@@ -3,7 +3,6 @@ read_file_raw <- function(file) {
 }
 
 test_that("write_lines works with both unix and windows newlines", {
-
   tmp <- tempfile()
   on.exit(unlink(tmp))
 

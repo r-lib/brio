@@ -1,3 +1,5 @@
 script.R
 revdep/
 infer-out
+src/*.o
+/src/brio.so
