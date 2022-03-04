@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Codecov test coverage](https://codecov.io/gh/r-lib/brio/branch/master/graph/badge.svg)](https://app.codecov.io/gh/r-lib/brio?branch=master)
-[![R build status](https://github.com/r-lib/brio/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/brio/actions)
+[![R-CMD-check](https://github.com/r-lib/brio/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/brio/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 Functions to handle basic input output, these functions always
@@ -97,3 +97,9 @@ bench::mark(
 
 unlink("benchmark")
 ```
+
+## Code of Conduct
+
+Please note that the brio project is released with a
+[Contributor Code of Conduct](https://brio.r-lib.org/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
