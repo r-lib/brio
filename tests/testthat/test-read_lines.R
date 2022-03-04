@@ -1,5 +1,4 @@
 test_that("read_lines works on empty files", {
-
   tmp <- tempfile()
   on.exit(unlink(tmp))
 
@@ -11,7 +10,6 @@ test_that("read_lines works on empty files", {
 })
 
 test_that("read_lines works files with no newlines", {
-
   tmp <- tempfile()
   on.exit(unlink(tmp))
 
@@ -23,7 +21,6 @@ test_that("read_lines works files with no newlines", {
 })
 
 test_that("read_lines works files with only newlines", {
-
   tmp <- tempfile()
   on.exit(unlink(tmp))
 
@@ -35,7 +32,6 @@ test_that("read_lines works files with only newlines", {
 })
 
 test_that("read_lines works files with only windows newlines", {
-
   tmp <- tempfile()
   on.exit(unlink(tmp))
 
@@ -47,7 +43,6 @@ test_that("read_lines works files with only windows newlines", {
 })
 
 test_that("read_lines works with unix line endings", {
-
   tmp <- tempfile()
   on.exit(unlink(tmp))
 
@@ -59,7 +54,6 @@ test_that("read_lines works with unix line endings", {
 })
 
 test_that("read_lines works with unix line endings and no trailing newline", {
-
   tmp <- tempfile()
   on.exit(unlink(tmp))
 
@@ -71,7 +65,6 @@ test_that("read_lines works with unix line endings and no trailing newline", {
 })
 
 test_that("read_lines works with Windows line endings", {
-
   tmp <- tempfile()
   on.exit(unlink(tmp))
 
@@ -83,7 +76,6 @@ test_that("read_lines works with Windows line endings", {
 })
 
 test_that("read_lines works with Windows line endings and no trailing newline", {
-
   tmp <- tempfile()
   on.exit(unlink(tmp))
 
@@ -95,7 +87,6 @@ test_that("read_lines works with Windows line endings and no trailing newline", 
 })
 
 test_that("read_lines works with long lines", {
-
   tmp <- tempfile()
   on.exit(unlink(tmp))
 
@@ -112,7 +103,6 @@ test_that("read_lines works with long lines", {
 })
 
 test_that("read_lines works with lots of lines", {
-
   tmp <- tempfile()
   on.exit(unlink(tmp))
 
@@ -127,7 +117,6 @@ test_that("read_lines works with lots of lines", {
 
 
 test_that("read_lines works with really long lines", {
-
   tmp <- tempfile()
   on.exit(unlink(tmp))
 
@@ -143,7 +132,6 @@ test_that("read_lines works with really long lines", {
 })
 
 test_that("read_lines works with lots of lines that don't end with a newline", {
-
   tmp <- tempfile()
   on.exit(unlink(tmp))
 
