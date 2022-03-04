@@ -1,8 +1,8 @@
-pandoc: 2.7.3
-pkgdown: 1.6.1
+pandoc: 2.14.2
+pkgdown: 2.0.2
 pkgdown_sha: ~
 articles: {}
-last_built: 2021-11-30T14:43Z
+last_built: 2022-03-04T18:32Z
 urls:
   reference: https://brio.r-lib.org/reference
   article: https://brio.r-lib.org/articles

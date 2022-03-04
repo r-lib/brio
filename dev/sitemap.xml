@@ -1,30 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://brio.r-lib.org/index.html</loc>
+    <loc>https://brio.r-lib.org/dev/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://brio.r-lib.org/reference/file_line_endings.html</loc>
+    <loc>https://brio.r-lib.org/dev/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://brio.r-lib.org/reference/readLines.html</loc>
+    <loc>https://brio.r-lib.org/dev/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://brio.r-lib.org/reference/read_file.html</loc>
+    <loc>https://brio.r-lib.org/dev/authors.html</loc>
   </url>
   <url>
-    <loc>https://brio.r-lib.org/reference/read_lines.html</loc>
+    <loc>https://brio.r-lib.org/dev/index.html</loc>
   </url>
   <url>
-    <loc>https://brio.r-lib.org/reference/writeLines.html</loc>
+    <loc>https://brio.r-lib.org/dev/news/index.html</loc>
   </url>
   <url>
-    <loc>https://brio.r-lib.org/reference/write_file.html</loc>
+    <loc>https://brio.r-lib.org/dev/reference/brio-package.html</loc>
   </url>
   <url>
-    <loc>https://brio.r-lib.org/reference/write_file_raw.html</loc>
+    <loc>https://brio.r-lib.org/dev/reference/file_line_endings.html</loc>
   </url>
   <url>
-    <loc>https://brio.r-lib.org/reference/write_lines.html</loc>
+    <loc>https://brio.r-lib.org/dev/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://brio.r-lib.org/dev/reference/readLines.html</loc>
+  </url>
+  <url>
+    <loc>https://brio.r-lib.org/dev/reference/read_file.html</loc>
+  </url>
+  <url>
+    <loc>https://brio.r-lib.org/dev/reference/read_lines.html</loc>
+  </url>
+  <url>
+    <loc>https://brio.r-lib.org/dev/reference/writeLines.html</loc>
+  </url>
+  <url>
+    <loc>https://brio.r-lib.org/dev/reference/write_file.html</loc>
+  </url>
+  <url>
+    <loc>https://brio.r-lib.org/dev/reference/write_file_raw.html</loc>
+  </url>
+  <url>
+    <loc>https://brio.r-lib.org/dev/reference/write_lines.html</loc>
   </url>
 </urlset>
