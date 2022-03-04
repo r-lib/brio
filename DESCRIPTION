@@ -13,6 +13,7 @@ Description: Functions to handle basic input output, these functions
 License: MIT + file LICENSE
 URL: https://brio.r-lib.org, https://github.com/r-lib/brio
 BugReports: https://github.com/r-lib/brio/issues
+Depends: R (>= 3.4)
 Suggests:
     covr,
     testthat (>= 3.0.0)
