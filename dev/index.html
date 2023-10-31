@@ -10,12 +10,12 @@
     files and provide more explicit control over line endings.">
 <title>Basic R Input Output • brio</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="deps/_Source%20Sans%20Pro-0.4.0/font.css" rel="stylesheet">
-<link href="deps/_Source%20Code%20Pro-0.4.0/font.css" rel="stylesheet">
+<link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="deps/Source_Sans_Pro-0.4.7/font.css" rel="stylesheet">
+<link href="deps/Source_Code_Pro-0.4.7/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Basic R Input Output">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Basic R Input Output">
 <meta property="og:description" content="Functions to handle basic input output, these functions
     always read and write UTF-8 (8-bit Unicode Transformation Format)
     files and provide more explicit control over line endings.">
@@ -77,88 +77,88 @@
 <h2 id="reading-files">Reading files<a class="anchor" aria-label="anchor" href="#reading-files"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://brio.r-lib.org">brio</a></span><span class="op">)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'brio'</span>
-<span class="co">#&gt; The following objects are masked from 'package:base':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     readLines, writeLines</span>
-<span class="fu"><a href="reference/write_lines.html">write_lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"abc"</span>, <span class="st">"123"</span><span class="op">)</span>, <span class="st">"my-file"</span><span class="op">)</span>
-
-<span class="co"># Write with windows newlines</span>
-<span class="fu"><a href="reference/write_lines.html">write_lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"abc"</span>, <span class="st">"123"</span><span class="op">)</span>, <span class="st">"my-file-2"</span>, eol <span class="op">=</span> <span class="st">"\r\n"</span><span class="op">)</span>
-
-<span class="fu"><a href="reference/file_line_endings.html">file_line_endings</a></span><span class="op">(</span><span class="st">"my-file"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "\n"</span>
-
-<span class="fu"><a href="reference/file_line_endings.html">file_line_endings</a></span><span class="op">(</span><span class="st">"my-file-2"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "\r\n"</span>
-
-<span class="fu"><a href="reference/read_lines.html">read_lines</a></span><span class="op">(</span><span class="st">"my-file"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "abc" "123"</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"my-file"</span>, <span class="st">"my-file-2"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://brio.r-lib.org">brio</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'brio'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     readLines, writeLines</span></span>
+<span><span class="fu"><a href="reference/write_lines.html">write_lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"abc"</span>, <span class="st">"123"</span><span class="op">)</span>, <span class="st">"my-file"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Write with windows newlines</span></span>
+<span><span class="fu"><a href="reference/write_lines.html">write_lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"abc"</span>, <span class="st">"123"</span><span class="op">)</span>, <span class="st">"my-file-2"</span>, eol <span class="op">=</span> <span class="st">"\r\n"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/file_line_endings.html">file_line_endings</a></span><span class="op">(</span><span class="st">"my-file"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "\n"</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/file_line_endings.html">file_line_endings</a></span><span class="op">(</span><span class="st">"my-file-2"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "\r\n"</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/read_lines.html">read_lines</a></span><span class="op">(</span><span class="st">"my-file"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "abc" "123"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"my-file"</span>, <span class="st">"my-file-2"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="drop-ins">Drop-ins<a class="anchor" aria-label="anchor" href="#drop-ins"></a>
 </h2>
 <p>brio also has <code><a href="reference/readLines.html">readLines()</a></code> and <code><a href="reference/writeLines.html">writeLines()</a></code> functions drop-in replacements for <code><a href="https://rdrr.io/r/base/readLines.html" class="external-link">base::readLines()</a></code> and <code><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">base::writeLines()</a></code>. These functions are thin wrappers around <code><a href="reference/read_lines.html">brio::read_lines()</a></code> and <code><a href="reference/write_lines.html">brio::write_lines()</a></code>, with deliberately fewer features than the base equivalents. If you want to convert a package to using brio you can add the following line and re-document.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">#' @importFrom brio readLines writeLines</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">#' @importFrom brio readLines writeLines</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="benchmarks">Benchmarks<a class="anchor" aria-label="anchor" href="#benchmarks"></a>
 </h2>
 <p>Speed is not necessarily a goal of brio, but it does end up being a nice side effect.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">gen_random</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">characters</span>, <span class="va">num_lines</span>, <span class="va">min</span>, <span class="va">max</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">line_lengths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="va">max</span> <span class="op">-</span> <span class="va">min</span>, <span class="va">num_lines</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span> <span class="va">min</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">line_lengths</span>, <span class="kw">function</span><span class="op">(</span><span class="va">len</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">characters</span>, <span class="va">len</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span>
-
-<span class="co"># generate 1000 random lines between 100-1000 characters long</span>
-<span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">gen_random</span><span class="op">(</span><span class="va">letters</span>, <span class="fl">1000</span>, min <span class="op">=</span> <span class="fl">100</span>, max <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span>
-
-<span class="fu">brio</span><span class="fu">::</span><span class="fu"><a href="reference/write_lines.html">write_lines</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"benchmark"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">gen_random</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">characters</span>, <span class="va">num_lines</span>, <span class="va">min</span>, <span class="va">max</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">line_lengths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample.int</a></span><span class="op">(</span><span class="va">max</span> <span class="op">-</span> <span class="va">min</span>, <span class="va">num_lines</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span> <span class="va">min</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">line_lengths</span>, <span class="kw">function</span><span class="op">(</span><span class="va">len</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">characters</span>, <span class="va">len</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># generate 1000 random lines between 100-1000 characters long</span></span>
+<span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">gen_random</span><span class="op">(</span><span class="va">letters</span>, <span class="fl">1000</span>, min <span class="op">=</span> <span class="fl">100</span>, max <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">brio</span><span class="fu">::</span><span class="fu"><a href="reference/write_lines.html">write_lines</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"benchmark"</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="reading">Reading<a class="anchor" aria-label="anchor" href="#reading"></a>
 </h3>
 <p>Reading speeds are a decent amount faster with brio, mainly due to larger block sizes and avoidance of extra copies.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">bench</span><span class="fu">::</span><span class="fu">mark</span><span class="op">(</span>
-  <span class="fu">brio</span><span class="fu">::</span><span class="fu"><a href="reference/read_lines.html">read_lines</a></span><span class="op">(</span><span class="st">"benchmark"</span><span class="op">)</span>,
-  <span class="fu">readr</span><span class="fu">::</span><span class="fu">read_lines</span><span class="op">(</span><span class="st">"benchmark"</span><span class="op">)</span>,
-  <span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="st">"benchmark"</span><span class="op">)</span>
-<span class="op">)</span>
-<span class="co">#&gt; # A tibble: 3 × 6</span>
-<span class="co">#&gt;   expression                          min   median `itr/sec` mem_alloc `gc/sec`</span>
-<span class="co">#&gt;   &lt;bch:expr&gt;                     &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 brio::read_lines("benchmark")  886.62µs 891.11µs     1119.    8.05KB      0  </span>
-<span class="co">#&gt; 2 readr::read_lines("benchmark")   2.69ms   2.92ms      342.   12.72MB     19.7</span>
-<span class="co">#&gt; 3 base::readLines("benchmark")     2.97ms   2.98ms      335.   31.39KB      0</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu">mark</span><span class="op">(</span></span>
+<span>  <span class="fu">brio</span><span class="fu">::</span><span class="fu"><a href="reference/read_lines.html">read_lines</a></span><span class="op">(</span><span class="st">"benchmark"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">readr</span><span class="fu">::</span><span class="fu">read_lines</span><span class="op">(</span><span class="st">"benchmark"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="st">"benchmark"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 6</span></span>
+<span><span class="co">#&gt;   expression                          min   median `itr/sec` mem_alloc `gc/sec`</span></span>
+<span><span class="co">#&gt;   &lt;bch:expr&gt;                     &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 brio::read_lines("benchmark")  886.62µs 891.11µs     1119.    8.05KB      0  </span></span>
+<span><span class="co">#&gt; 2 readr::read_lines("benchmark")   2.69ms   2.92ms      342.   12.72MB     19.7</span></span>
+<span><span class="co">#&gt; 3 base::readLines("benchmark")     2.97ms   2.98ms      335.   31.39KB      0</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="writing">Writing<a class="anchor" aria-label="anchor" href="#writing"></a>
 </h3>
 <p>Write speeds are basically the same regardless of method, though brio does avoid some extra memory allocations.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">bench</span><span class="fu">::</span><span class="fu">mark</span><span class="op">(</span>
-  <span class="fu">brio</span><span class="fu">::</span><span class="fu"><a href="reference/write_lines.html">write_lines</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"benchmark"</span><span class="op">)</span>,
-  <span class="fu">readr</span><span class="fu">::</span><span class="fu">write_lines</span><span class="op">(</span><span class="va">data</span>, <span class="st">"benchmark"</span><span class="op">)</span>,
-  <span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"benchmark"</span><span class="op">)</span>,
-  check <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span>
-<span class="co">#&gt; # A tibble: 3 × 6</span>
-<span class="co">#&gt;   expression                                 min   median `itr/sec` mem_alloc</span>
-<span class="co">#&gt;   &lt;bch:expr&gt;                            &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;</span>
-<span class="co">#&gt; 1 brio::write_lines(data, "benchmark")  496.02µs  518.1µs     1911.        0B</span>
-<span class="co">#&gt; 2 readr::write_lines(data, "benchmark")   7.16ms   7.61ms      111.     106KB</span>
-<span class="co">#&gt; 3 base::writeLines(data, "benchmark")   508.65µs 540.83µs     1809.        0B</span>
-<span class="co">#&gt; # … with 1 more variable: `gc/sec` &lt;dbl&gt;</span>
-
-<span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="st">"benchmark"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">bench</span><span class="fu">::</span><span class="fu">mark</span><span class="op">(</span></span>
+<span>  <span class="fu">brio</span><span class="fu">::</span><span class="fu"><a href="reference/write_lines.html">write_lines</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"benchmark"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">readr</span><span class="fu">::</span><span class="fu">write_lines</span><span class="op">(</span><span class="va">data</span>, <span class="st">"benchmark"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"benchmark"</span><span class="op">)</span>,</span>
+<span>  check <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 3 × 6</span></span>
+<span><span class="co">#&gt;   expression                                 min   median `itr/sec` mem_alloc</span></span>
+<span><span class="co">#&gt;   &lt;bch:expr&gt;                            &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;</span></span>
+<span><span class="co">#&gt; 1 brio::write_lines(data, "benchmark")  496.02µs  518.1µs     1911.        0B</span></span>
+<span><span class="co">#&gt; 2 readr::write_lines(data, "benchmark")   7.16ms   7.61ms      111.     106KB</span></span>
+<span><span class="co">#&gt; 3 base::writeLines(data, "benchmark")   508.65µs 540.83µs     1809.        0B</span></span>
+<span><span class="co">#&gt; # … with 1 more variable: `gc/sec` &lt;dbl&gt;</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="st">"benchmark"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -231,7 +231,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
   </div></footer>
