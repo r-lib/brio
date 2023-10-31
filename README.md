@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![Codecov test
-coverage](https://codecov.io/gh/r-lib/brio/branch/master/graph/badge.svg)](https://app.codecov.io/gh/r-lib/brio?branch=master)
+coverage](https://codecov.io/gh/r-lib/brio/branch/main/graph/badge.svg)](https://app.codecov.io/gh/r-lib/brio?branch=main)
 [![R-CMD-check](https://github.com/r-lib/brio/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/brio/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
