@@ -13,12 +13,13 @@ Description: Functions to handle basic input output, these functions
 License: MIT + file LICENSE
 URL: https://brio.r-lib.org, https://github.com/r-lib/brio
 BugReports: https://github.com/r-lib/brio/issues
-Depends: R (>= 3.4)
+Depends: 
+    R (>= 3.4)
 Suggests:
     covr,
     testthat (>= 3.0.0)
+Config/Needs/website: tidyverse/tidytemplate
+Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
-Config/testthat/edition: 3
-Config/Needs/website: tidyverse/tidytemplate
