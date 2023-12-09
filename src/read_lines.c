@@ -64,7 +64,7 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
 
   if (!line.data) {
     fclose(fp);
-    error("Allocation of size %i failed", line.limit);
+    error("Allocation of size %zu failed", line.limit);
   }
 
   size_t read_size = 0;

@@ -26,7 +26,7 @@ SEXP brio_read_file(SEXP path) {
   read_buf = (char*)malloc(file_size + 1);
   if (!read_buf) {
     fclose(fp);
-    error("Allocation of size %i failed", file_size + 1);
+    error("Allocation of size %zu failed", file_size + 1);
   }
   read_buf[file_size] = '\0';
 
