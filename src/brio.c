@@ -23,7 +23,7 @@ FILE* open_with_widechar_on_windows(SEXP path, const char* mode) {
   }
   buf = (wchar_t*)R_alloc(len, sizeof(wchar_t));
   if (buf == NULL) {
-    error("Could not allocate buffer of size: %ll", len);
+    error("Could not allocate buffer of size: %zu", len);
   }
 
   MultiByteToWideChar(CP_UTF8, 0, path_c, -1, buf, len);
