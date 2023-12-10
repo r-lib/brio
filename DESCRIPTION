@@ -1,6 +1,6 @@
 Package: brio
 Title: Basic R Input Output
-Version: 1.1.3.9000
+Version: 1.1.4
 Authors@R: c(
     person("Jim", "Hester", role = "aut",
            comment = c(ORCID = "0000-0002-2739-7082")),
