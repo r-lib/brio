@@ -22,6 +22,9 @@
     <loc>https://brio.r-lib.org/news/index.html</loc>
   </url>
   <url>
+    <loc>https://brio.r-lib.org/reference/brio-package.html</loc>
+  </url>
+  <url>
     <loc>https://brio.r-lib.org/reference/file_line_endings.html</loc>
   </url>
   <url>
