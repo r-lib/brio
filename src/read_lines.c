@@ -54,7 +54,12 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
   PROTECT_WITH_INDEX(out, &out_idx);
 
 #define READ_BUF_SIZE 1024 * 1024
-  char read_buf[READ_BUF_SIZE];
+  char* read_buf = (char*)malloc(READ_BUF_SIZE);
+  if (!read_buf) {
+    fclose(fp);
+    error("Allocation of size %zu failed", READ_BUF_SIZE);
+  }
+
   R_xlen_t out_num = 0;
 
   str_buf line;
@@ -64,6 +69,7 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
 
   if (!line.data) {
     fclose(fp);
+    free(read_buf);
     error("Allocation of size %zu failed", line.limit);
   }
 
@@ -71,6 +77,7 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
   while ((read_size = fread(read_buf, 1, READ_BUF_SIZE - 1, fp)) > 0) {
     if (read_size != READ_BUF_SIZE - 1 && ferror(fp)) {
       free(line.data);
+      free(read_buf);
       error(
           "Error reading from file: %s", Rf_translateChar(STRING_ELT(path, 0)));
     }
@@ -103,6 +110,7 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
 
       if (n_c > 0 && out_num >= n_c) {
         free(line.data);
+        free(read_buf);
         fclose(fp);
         UNPROTECT(1);
         return out;
@@ -129,6 +137,7 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
 
   fclose(fp);
   free(line.data);
+  free(read_buf);
 
   UNPROTECT(1);
   return out;
