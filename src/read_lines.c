@@ -57,7 +57,7 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
   char* read_buf = (char*)malloc(READ_BUF_SIZE);
   if (!read_buf) {
     fclose(fp);
-    error("Allocation of size %zu failed", READ_BUF_SIZE);
+    error("Allocation of size %d failed", READ_BUF_SIZE);
   }
 
   R_xlen_t out_num = 0;
