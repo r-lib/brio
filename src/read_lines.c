@@ -130,10 +130,10 @@ SEXP brio_read_lines(SEXP path, SEXP n) {
     UNPROTECT(1);
   }
 
-  if (out_num < Rf_xlength(out)) {
-    SETLENGTH(out, out_num);
-    SET_TRUELENGTH(out, out_num);
-  }
+  // Rf_xlengthgets is very cheap if the size is already correct, so
+  // don't check for size mismatch. It is very likely that there is a
+  // mismatch, anyway.
+  REPROTECT(out = Rf_lengthgets(out, out_num), out_idx);
 
   fclose(fp);
   free(line.data);
