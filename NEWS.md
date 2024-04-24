@@ -1,4 +1,4 @@
-# brio (development version)
+# brio 1.1.5
 
 * brio now works in WebR.
 
