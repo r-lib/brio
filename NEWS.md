@@ -1,5 +1,7 @@
 # brio (development version)
 
+* brio now works in WebR.
+
 # brio 1.1.4
 
 * `printf()`-like format strings are now safer.
