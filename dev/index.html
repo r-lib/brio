@@ -8,10 +8,10 @@
 <title>Basic R Input Output • brio</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Source_Sans_Pro-0.4.9/font.css" rel="stylesheet">
-<link href="deps/Source_Code_Pro-0.4.9/font.css" rel="stylesheet">
-<link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Source_Sans_Pro-0.4.10/font.css" rel="stylesheet">
+<link href="deps/Source_Code_Pro-0.4.10/font.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Basic R Input Output">
 <meta name="description" content="Functions to handle basic input output, these functions always read and write UTF-8 (8-bit Unicode Transformation Format) files and provide more explicit control over line endings.">
 <meta property="og:description" content="Functions to handle basic input output, these functions always read and write UTF-8 (8-bit Unicode Transformation Format) files and provide more explicit control over line endings.">
@@ -61,11 +61,6 @@
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://brio.r-lib.org">brio</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'brio'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     readLines, writeLines</span></span>
 <span><span class="fu"><a href="reference/write_lines.html">write_lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"abc"</span>, <span class="st">"123"</span><span class="op">)</span>, <span class="st">"my-file"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Write with windows newlines</span></span>
@@ -116,11 +111,11 @@
 <span>  <span class="fu">base</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="st">"benchmark"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 3 × 6</span></span>
-<span><span class="co">#&gt;   expression                          min   median `itr/sec` mem_alloc `gc/sec`</span></span>
-<span><span class="co">#&gt;   &lt;bch:expr&gt;                     &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 brio::read_lines("benchmark")  886.62µs 891.11µs     1119.    8.05KB      0  </span></span>
-<span><span class="co">#&gt; 2 readr::read_lines("benchmark")   2.69ms   2.92ms      342.   12.72MB     19.7</span></span>
-<span><span class="co">#&gt; 3 base::readLines("benchmark")     2.97ms   2.98ms      335.   31.39KB      0</span></span></code></pre></div>
+<span><span class="co">#&gt;   expression                           min   median `itr/sec` mem_alloc `gc/sec`</span></span>
+<span><span class="co">#&gt;   &lt;bch:expr&gt;                      &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 "brio::read_lines(\"benchmark\… 692.28µs 703.68µs     1417.   15.91KB     0   </span></span>
+<span><span class="co">#&gt; 2 "readr::read_lines(\"benchmark…   1.79ms   1.89ms      521.    3.73MB     8.30</span></span>
+<span><span class="co">#&gt; 3 "base::readLines(\"benchmark\"…   2.78ms    2.8ms      357.   31.39KB     0</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="writing">Writing<a class="anchor" aria-label="anchor" href="#writing"></a>
@@ -134,12 +129,11 @@
 <span>  check <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 3 × 6</span></span>
-<span><span class="co">#&gt;   expression                                 min   median `itr/sec` mem_alloc</span></span>
-<span><span class="co">#&gt;   &lt;bch:expr&gt;                            &lt;bch:tm&gt; &lt;bch:tm&gt;     &lt;dbl&gt; &lt;bch:byt&gt;</span></span>
-<span><span class="co">#&gt; 1 brio::write_lines(data, "benchmark")  496.02µs  518.1µs     1911.        0B</span></span>
-<span><span class="co">#&gt; 2 readr::write_lines(data, "benchmark")   7.16ms   7.61ms      111.     106KB</span></span>
-<span><span class="co">#&gt; 3 base::writeLines(data, "benchmark")   508.65µs 540.83µs     1809.        0B</span></span>
-<span><span class="co">#&gt; # … with 1 more variable: `gc/sec` &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt;   expression                             min median `itr/sec` mem_alloc `gc/sec`</span></span>
+<span><span class="co">#&gt;   &lt;bch:expr&gt;                         &lt;bch:t&gt; &lt;bch:&gt;     &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;</span></span>
+<span><span class="co">#&gt; 1 "brio::write_lines(data, \"benchm…   476µs  511µs    1378.         0B     0   </span></span>
+<span><span class="co">#&gt; 2 "readr::write_lines(data, \"bench…  10.3ms   15ms      66.4     102KB     0   </span></span>
+<span><span class="co">#&gt; 3 "base::writeLines(data, \"benchma… 500.8µs  528µs    1718.         0B     2.01</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="st">"benchmark"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -190,14 +184,15 @@
 <a href="https://github.com/gaborcsardi" class="external-link">Gábor Csárdi</a> <br><small class="roles"> Author, maintainer </small>  </li>
 <li>
 <a href="https://www.posit.co" class="external-link"><img src="https://www.tidyverse.org/posit-logo.svg" alt="Posit" height="16" width="62" style="margin-bottom: 3px;"></a> <br><small class="roles"> Copyright holder, funder </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://app.codecov.io/gh/r-lib/brio?branch=main" class="external-link"><img src="https://codecov.io/gh/r-lib/brio/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://github.com/r-lib/brio/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/r-lib/brio/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://app.codecov.io/gh/r-lib/brio" class="external-link"><img src="https://codecov.io/gh/r-lib/brio/graph/badge.svg" alt="Codecov test coverage"></a></li>
 </ul>
 </div>
 
@@ -212,7 +207,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
   </div></footer>
