@@ -6,15 +6,10 @@ test_that("write_file_raw errors on invalid inputs", {
   tmp <- tempfile()
   on.exit(unlink(tmp))
 
-  expect_error(
-    write_file_raw("foo", c("bar", tmp)),
-    "must be a raw vector"
-  )
-
-  expect_error(
-    write_file_raw(charToRaw("foo"), c("bar", tmp)),
-    "must be a single element"
-  )
+  expect_snapshot(error = TRUE, {
+    write_file_raw("foo", c("bar", tmp))
+    write_file_raw(charToRaw("foo"), c("bar", tmp))
+  })
 })
 
 test_that("write_file_raw works", {
