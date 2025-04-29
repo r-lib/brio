@@ -32,7 +32,11 @@ writeLines <- function(text, con, sep = "\n", useBytes) {
     stop("Only file paths are supported by brio::writeLines()", call. = FALSE)
   }
   if (!missing(useBytes)) {
-    warning("`useBytes` is ignored by brio::writeLines()", immediate. = TRUE, call. = FALSE)
+    warning(
+      "`useBytes` is ignored by brio::writeLines()",
+      immediate. = TRUE,
+      call. = FALSE
+    )
   }
   write_lines(text, path = con, eol = sep)
 }
