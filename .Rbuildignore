@@ -12,3 +12,5 @@
 ^revdep$
 ^Makefile$
 ^infer-out$
+^[\.]?air\.toml$
+^\.vscode$

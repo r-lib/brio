@@ -6,15 +6,10 @@ test_that("write_file errors on invalid inputs", {
   tmp <- tempfile()
   on.exit(unlink(tmp))
 
-  expect_error(
-    write_file(c("foo", "bar"), tmp),
-    "cannot have more than one element"
-  )
-
-  expect_error(
-    write_file("foo", c("bar", tmp)),
-    "must be a single element"
-  )
+  expect_snapshot(error = TRUE, {
+    write_file(c("foo", "bar"), tmp)
+    write_file("foo", c("bar", tmp))
+  })
 })
 
 test_that("write_file works", {

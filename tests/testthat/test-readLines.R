@@ -6,7 +6,7 @@ test_that("readLines works", {
 
   # Errors with connections
   con <- file(tmp)
-  expect_error(readLines(con), "Only file paths are supported")
+  expect_snapshot(error = TRUE, readLines(con))
   close(con)
 
   # Warns if you use ok, warn, encoding or skipNul

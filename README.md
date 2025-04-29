@@ -5,9 +5,9 @@
 
 <!-- badges: start -->
 
-[![Codecov test
-coverage](https://codecov.io/gh/r-lib/brio/branch/main/graph/badge.svg)](https://app.codecov.io/gh/r-lib/brio?branch=main)
 [![R-CMD-check](https://github.com/r-lib/brio/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/brio/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/r-lib/brio/graph/badge.svg)](https://app.codecov.io/gh/r-lib/brio)
 <!-- badges: end -->
 
 Functions to handle basic input output, these functions always read and
@@ -17,11 +17,6 @@ write UTF-8 files and provide more explicit control over line endings.
 
 ``` r
 library(brio)
-#> 
-#> Attaching package: 'brio'
-#> The following objects are masked from 'package:base':
-#> 
-#>     readLines, writeLines
 write_lines(c("abc", "123"), "my-file")
 
 # Write with windows newlines
@@ -83,11 +78,11 @@ bench::mark(
   base::readLines("benchmark")
 )
 #> # A tibble: 3 × 6
-#>   expression                          min   median `itr/sec` mem_alloc `gc/sec`
-#>   <bch:expr>                     <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
-#> 1 brio::read_lines("benchmark")  886.62µs 891.11µs     1119.    8.05KB      0  
-#> 2 readr::read_lines("benchmark")   2.69ms   2.92ms      342.   12.72MB     19.7
-#> 3 base::readLines("benchmark")     2.97ms   2.98ms      335.   31.39KB      0
+#>   expression                           min   median `itr/sec` mem_alloc `gc/sec`
+#>   <bch:expr>                      <bch:tm> <bch:tm>     <dbl> <bch:byt>    <dbl>
+#> 1 "brio::read_lines(\"benchmark\… 692.28µs 703.68µs     1417.   15.91KB     0   
+#> 2 "readr::read_lines(\"benchmark…   1.79ms   1.89ms      521.    3.73MB     8.30
+#> 3 "base::readLines(\"benchmark\"…   2.78ms    2.8ms      357.   31.39KB     0
 ```
 
 ### Writing
@@ -103,12 +98,11 @@ bench::mark(
   check = FALSE
 )
 #> # A tibble: 3 × 6
-#>   expression                                 min   median `itr/sec` mem_alloc
-#>   <bch:expr>                            <bch:tm> <bch:tm>     <dbl> <bch:byt>
-#> 1 brio::write_lines(data, "benchmark")  496.02µs  518.1µs     1911.        0B
-#> 2 readr::write_lines(data, "benchmark")   7.16ms   7.61ms      111.     106KB
-#> 3 base::writeLines(data, "benchmark")   508.65µs 540.83µs     1809.        0B
-#> # … with 1 more variable: `gc/sec` <dbl>
+#>   expression                             min median `itr/sec` mem_alloc `gc/sec`
+#>   <bch:expr>                         <bch:t> <bch:>     <dbl> <bch:byt>    <dbl>
+#> 1 "brio::write_lines(data, \"benchm…   476µs  511µs    1378.         0B     0   
+#> 2 "readr::write_lines(data, \"bench…  10.3ms   15ms      66.4     102KB     0   
+#> 3 "base::writeLines(data, \"benchma… 500.8µs  528µs    1718.         0B     2.01
 
 unlink("benchmark")
 ```

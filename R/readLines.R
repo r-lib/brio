@@ -32,16 +32,32 @@ readLines <- function(con, n = -1, ok, warn, encoding, skipNul) {
     stop("Only file paths are supported by brio::readLines()", call. = FALSE)
   }
   if (!missing(ok)) {
-    warning("`ok` is ignored by brio::readLines()", immediate. = TRUE, call. = FALSE)
+    warning(
+      "`ok` is ignored by brio::readLines()",
+      immediate. = TRUE,
+      call. = FALSE
+    )
   }
   if (!missing(warn)) {
-    warning("`warn` is ignored by brio::readLines()", immediate. = TRUE, call. = FALSE)
+    warning(
+      "`warn` is ignored by brio::readLines()",
+      immediate. = TRUE,
+      call. = FALSE
+    )
   }
   if (!missing(encoding)) {
-    warning("`encoding` is ignored by brio::readLines()", immediate. = TRUE, call. = FALSE)
+    warning(
+      "`encoding` is ignored by brio::readLines()",
+      immediate. = TRUE,
+      call. = FALSE
+    )
   }
   if (!missing(skipNul)) {
-    warning("`skipNul` is ignored by brio::readLines()", immediate. = TRUE, call. = FALSE)
+    warning(
+      "`skipNul` is ignored by brio::readLines()",
+      immediate. = TRUE,
+      call. = FALSE
+    )
   }
   read_lines(con, n)
 }
