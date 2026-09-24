@@ -1,5 +1,7 @@
 # brio (development version)
 
+* `read_lines()` now uses `Rf_xlengthgets()` when shrinking its result vector, avoiding truncation of the line count for files with 2^31 or more lines (@jimhester, #34).
+
 # brio 1.1.5
 
 * brio now works in WebR.
